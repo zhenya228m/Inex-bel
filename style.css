@@ -816,3 +816,257 @@ html {
     scrollbar-width: thin;
     scrollbar-color: #2563eb #f1f5f9; /* Синий ползунок */
 }
+/* ==========================================================================
+   13. ИСПРАВЛЕНИЕ НОМЕРОВ И НАСТРОЙКА ГАЛЕРЕИ (СЛАЙДЕРА)
+   ========================================================================== */
+
+/* Обертка для позиционирования стрелок слайдера */
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Обновленная сетка: превращаем её в горизонтальную ленту */
+.specialization-grid {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    overflow-x: auto; /* Включаем горизонтальную прокрутку */
+    scroll-behavior: smooth; /* Плавное движение при клике на стрелки */
+    scrollbar-width: none; /* Скрываем стандартный скроллбар в Firefox */
+    padding: 10px 4px;
+}
+
+/* Скрываем скроллбар в Chrome/Safari/Edge, чтобы лента была чистой */
+.specialization-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ограничиваем ширину карточек на ПК, чтобы они стали маленькими и не пикселили */
+.spec-card {
+    flex: 0 0 300px; /* Каждая карточка строго 300px в ширину, картинка станет компактной */
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease;
+}
+
+/* Уменьшаем высоту картинки, чтобы убрать эффект гигантизма */
+.spec-card__img {
+    width: 100%;
+    height: 180px; /* Уменьшили высоту, картинка четкая и аккуратная */
+    object-fit: cover;
+}
+
+/* Кнопки-стрелки для управления слайдером на ПК */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: var(--accent-color);
+    transition: all 0.3s;
+}
+
+.slider-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+.prev-btn { left: -50px; }
+.next-btn { right: -50px; }
+
+/* АДАПТИВНОСТЬ ДЛЯ СМАРТФОНОВ И ТЕКУЩИХ ФИКСОВ */
+@media (max-width: 1024px) {
+    /* На планшетах и мобильных прячем стрелки, так как там удобнее листать пальцем (свайпать) */
+    .slider-btn {
+        display: none;
+    }
+    
+    /* Карточки на экранах поменьше делаем чуть уже, чтобы было видно, что ленту можно листать */
+    .spec-card {
+        flex: 0 0 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* ИСПРАВЛЕНИЕ: Уменьшаем размер шрифта телефонов, чтобы они гарантированно влезали в одну строчку */
+    .header-sub__link {
+        font-size: 11px; /* Сделали меньше, теперь номера не будут разрываться */
+        white-space: nowrap; /* Запрещаем перенос цифр на новую строку */
+    }
+    
+    /* Делаем небольшой внутренний зазор в контактах на мобилке */
+    .header-sub__contacts {
+        gap: 2px;
+    }
+}
+/* ==========================================================================
+   14. АДАПТИВНЫЙ СЛАЙДЕР: ОТОБРАЖЕНИЕ ТОЛЬКО НА МОБИЛЬНЫХ ТЕЛЕФОНАХ
+   ========================================================================== */
+
+/* БАЗОВЫЕ СТИЛИ (Для ПК и Планшетов по умолчанию) */
+
+.specialization-container {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* На ПК и Планшетах карточки стоят в обычный красивый ряд из 3-х штук во всю ширину (950px) */
+.specialization-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    width: 100%;
+}
+
+.spec-card {
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.spec-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.spec-card__img {
+    width: 100%;
+    height: 240px; /* Красивая высота картинок на ПК */
+    object-fit: cover;
+    display: block;
+}
+
+/* СКРЫВАЕМ СТРЕЛКИ И ТОЧКИ НА ПК И ПЛАНШЕТАХ */
+.slider-btn {
+    display: none !important; /* На ПК и планшетах стрелок нет вообще */
+}
+
+.slider-dots {
+    display: none !important; /* На ПК и планшетах точек нет вообще */
+}
+
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (Сетка из 2-х колонок)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .specialization-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 карточки в ряд на планшетах */
+    }
+}
+
+
+/* ==========================================================================
+   ВКЛЮЧЕНИЕ СЛАЙДЕРА: ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (Меньше 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Перестраиваем сетку в горизонтальную ленту слайдера */
+.specialization-grid {
+        display: flex;
+        gap: 0; /* Возвращаем карточки стык в стык, чтобы они были большими на весь экран */
+        overflow-x: auto; 
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        padding: 10px 0;
+        scroll-snap-type: x mandatory; 
+    }
+
+    /* Карточка снова большая и занимает 100% ширины экрана */
+    .spec-card {
+        flex: 0 0 100%; 
+        width: 100%;
+        scroll-snap-align: center;
+        border-radius: 14px;
+        background: #f8fafc;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .spec-card__img {
+        height: 160px; /* Фиксированная высота */
+        
+        /* ИСПРАВЛЕНО: Ограничиваем ширину картинки, чтобы она больше не растягивалась по длине экрана */
+        width: 100%;
+        max-width: 240px; /* Картинка станет аккуратным прямоугольником и не будет размазываться */
+        
+        margin: 20px auto 0 auto; /* Центрируем картинку по горизонтали внутри большой карточки */
+        border-radius: 12px; /* Красивые закругленные уголки */
+        object-fit: cover; /* Защита от деформации и пикселей */
+        display: block;
+    }
+    /* Стрелочки управления */
+    .slider-btn {
+        display: flex !important;
+        position: absolute;
+        top: 30%; /* Корректируем высоту стрелок под новую маленькую картинку */
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(4px);
+        border: 1px solid #e2e8f0;
+        border-radius: 50%;
+        font-size: 14px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        color: var(--accent-color);
+    }
+
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
+
+    /* ПОКАЗЫВАЕМ ТОЧКИ НА ТЕЛЕФОНЕ */
+    .slider-dots {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        background-color: #cbd5e1;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dot.active {
+        width: 24px;
+        background-color: var(--accent-color);
+    }
+}

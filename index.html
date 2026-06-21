@@ -77,47 +77,60 @@
 </div>
 <br>
 <!-- ПОЛНОСТЬЮ ЗАМЕНИТЕ СВОЮ СЕКЦИЮ SPECIALIZATION НА ЭТУ ИСПРАВЛЕННУЮ: -->
+<!-- ПОЛНОСТЬЮ ЗАМЕНИТЕ СЕКЦИЮ SPECIALIZATION НА ЭТУ: -->
 <section class="specialization-section">
     <div class="specialization-container">
         
-        <!-- Главный большой заголовок и подзаголовок -->
         <h2 class="specialization-title">Инекс-Бел — лучшая компания по производству труб</h2>
-        <p class="specialization-subtitle">Мы специализируемся на качественном производстве труб из минеральной ваты, установке и предлагаем лучшие условия для наших клиентов.</p>
+        <p class="specialization-subtitle">Мы специализируемся на трубах из минеральной ваты, их качественной установке и предлагаем лучшие условия для наших клиентов.</p>
         
-        <!-- Чистая и ровная сетка для карточек (без вложенных контейнеров!) -->
-        <div class="specialization-grid">
-            
-            <!-- Карточка 1 -->
-            <div class="spec-card">
-                <img src="images/pipe.jpg" alt="Теплоизоляционные трубы" class="spec-card__img">
-                <div class="spec-card__content">
-                    <h3>Теплоизоляционные трубы</h3>
-                    <p>Собственное производство труб из минеральной ваты высокого качества.</p>
-                </div>
+        <!-- Обертка для галереи с кнопками управления -->
+        <!-- НАЙДИТЕ .slider-wrapper И ЗАМЕНИТЕ НА ЭТОТ ВАРИАНТ (ДОБАВИЛИ БЛОК ДЛЯ ТОЧЕК СНИЗУ) -->
+<div class="slider-wrapper">
+    <button class="slider-btn prev-btn" id="slidePrev" aria-label="Назад">&#10094;</button>
+    
+    <div class="specialization-grid" id="sliderTrack">
+        <!-- Карточка 1 -->
+        <div class="spec-card">
+            <img src="images/pipe.jpg" alt="Теплоизоляционные трубы" class="spec-card__img">
+            <div class="spec-card__content">
+                <h3>Теплоизоляционные трубы</h3>
+                <p>Собственное производство труб из минеральной ваты высокого качества.</p>
             </div>
+        </div>
 
-            <!-- Карточка 2 -->
-            <div class="spec-card">
-                <img src="images/installation.jpg" alt="Профессиональный монтаж" class="spec-card__img">
-                <div class="spec-card__content">
-                    <h3>Профессиональный монтаж</h3>
-                    <p>Квалифицированная установка систем любой сложности с гарантией.</p>
-                </div>
+        <!-- Карточка 2 -->
+        <div class="spec-card">
+            <img src="images/installation.jpg" alt="Профессиональный монтаж" class="spec-card__img">
+            <div class="spec-card__content">
+                <h3>Профессиональный монтаж</h3>
+                <p>Квалифицированная установка систем любой сложности с гарантией.</p>
             </div>
+        </div>
 
-            <!-- Карточка 3 -->
-            <div class="spec-card">
-                <img src="images/discount.jpg" alt="Доступное ценообразование" class="spec-card__img">
-                <div class="spec-card__content">
-                    <h3>Низкие цены и скидки</h3>
-                    <p>Выгодные условия напрямую от производителя без посредников.</p>
-                </div>
+        <!-- Карточка 3 -->
+        <div class="spec-card">
+            <img src="images/discount.jpg" alt="Доступное ценообразование" class="spec-card__img">
+            <div class="spec-card__content">
+                <h3>Низкие цены и скидки</h3>
+                <p>Выгодные условия напрямую от производителя без посредников.</p>
             </div>
+        </div>
+    </div>
 
-        </div> <!-- Конец specialization-grid -->
-    </div> <!-- Конец specialization-container -->
-</section> <!-- Конец specialization-section -->
+    <button class="slider-btn next-btn" id="slideNext" aria-label="Вперед">&#10095;</button>
+</div>
 
+<!-- ДОБАВИТЬ ЭТОТ БЛОК ДЛЯ ТОЧЕК СТРОГО ПОД .slider-wrapper -->
+<div class="slider-dots" id="sliderDots">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+</div>
+
+        
+    </div>
+</section>
 
 <!-- НАЙДИТЕ ВАШ БЛОК ФОРМЫ И ДОБАВЬТЕ ОБЕРТКУ <div class="form-info"> -->
 <section id="contact-form" class="contact-section">
