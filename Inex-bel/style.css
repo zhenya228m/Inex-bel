@@ -1,0 +1,818 @@
+/* ==========================================================================
+   1. БАЗОВЫЕ СБРОСЫ И ДЕМО-ФОН
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 200vh;
+    background: #ffffff !important; /* Принудительно делаем фон сайта чисто белым */
+    padding-top: 120px;
+}
+
+
+/* Переменные для эффекта жидкого стекла на светлом фоне */
+:root {
+    /* Слегка затемненное стекло, чтобы оно выделялось на белом фоне */
+    --glass-bg: rgba(88, 88, 88, 0.2); 
+    /* Темная тонкая граница вместо светлой */
+    --glass-border: rgba(0, 0, 0, 0.08); 
+    --glass-blur: 20px;
+    /* Мягкая, более легкая тень для светлой темы */
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08); 
+    /* Меняем основной цвет текста на темно-серый (был белый) */
+    --text-color: #1e293b; 
+    /* Оставляем красивый фиолетовый акцент для кнопок */
+    --accent-color: #2563eb; 
+}
+
+
+/* ==========================================================================
+   2. ХЕАДЕР И СТРУКТУРА КОНТЕЙНЕРА (Мобильные по умолчанию)
+   ========================================================================== */
+.header {
+    position: fixed;
+    top: 20px; /* Эффект левитации */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    
+    /* Размеры для телефонов: центрировано, не во весь экран */
+    width: calc(100% - 32px); 
+    max-width: 450px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header__container {
+    height: 64px;
+    padding: 0 12px; /* Минимальные боковые отступы для плотного прилегания логотипа */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ==========================================================================
+   3. ЛОГОТИП С КАРТИНКОЙ (Без вертикальных рамок)
+   ========================================================================== */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 100%; /* Растягиваем на всю высоту контейнера */
+    margin: 0;
+    padding: 0;
+    
+    /* Совместимость с обрезкой фона */
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.logo__img {
+    height: 64px; /* Высота равна высоте контейнера — рамок сверху/снизу нет вообще */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo__img:hover {
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   4. НАВИГАЦИЯ И ССЫЛКИ
+   ========================================================================== */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: relative; /* База для правого позиционирования бургера на ПК/Планшетах */
+}
+
+.nav__list {
+    display: none; /* Скрыто на телефонах по умолчанию */
+    list-style: none;
+    gap: 24px;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.nav__link:hover {
+    opacity: 1;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+/* ==========================================================================
+   5. КНОПКА БУРГЕРА (И ее анимация)
+   ========================================================================== */
+.burger-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    z-index: 1001;
+    transition: background 0.3s;
+}
+
+.burger-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.burger-btn span {
+    display: block;
+    height: 2px;
+    width: 20px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+.burger-btn.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.burger-btn.active span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+.burger-btn.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   6. ВЫПАДАЮЩЕЕ БУРГЕР-МЕНЮ (По умолчанию для ПК/Планшетов — справа)
+   ========================================================================== */
+.burger-menu {
+    position: absolute;
+    top: 130px; 
+    right: 0;  
+    left: auto;
+    transform: translateY(-10px) scale(0.95);
+    
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 2px solid #cbd5e1;
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    
+    width: 280px; 
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.burger-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.burger-menu__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.burger-menu__link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 500;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.burger-menu__link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent-color);
+}
+
+/* Класс для скрытия элементов на ПК/Планшетах */
+.mobile-only {
+    display: none; 
+}
+
+/* ==========================================================================
+   7. АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (до 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block; /* Показываем скрытые вкладки в бургере на телефоне */
+    }
+    
+    /* Перестраиваем бургер-меню на мобилке по центру экрана (не на весь экран) */
+    .burger-menu {
+        position: fixed;
+        top: 150px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) scale(0.95);
+        width: calc(100% - 32px);
+        max-width: 450px;
+        text-align: center;
+    }
+    
+    .burger-menu.active {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* ==========================================================================
+   8. АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (от 769px до 1024px)
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1500px) {
+    .header {
+        width: calc(100% - 40px); /* Почти на всю ширину экрана с красивыми отступами */
+        max-width: none;
+        border-radius: 20px;
+    }
+    .header__container {
+        padding: 0 24px; /* Чуть увеличиваем отступы от краев для баланса */
+    }
+    .nav__list {
+        display: flex; /* Включаем отображение вкладок в строку */
+    }
+}
+
+/* ==========================================================================
+   9. АДАПТИВНОСТЬ ДЛЯ ПК (от 1025px и выше)
+   ========================================================================== */
+@media (min-width: 1500px) {
+    .header {
+        width: 60%; /* Строго 60% ширины экрана на ПК */
+        max-width: none;
+        top: 24px; /* Левитирующее состояние */
+    }
+    .header__container {
+        padding: 0 24px;
+    }
+    .nav__list {
+        display: flex; /* Показываем основные ссылки в строку */
+    }
+}
+/* ==========================================================================
+   ПОЛНЫЙ CSS ДЛЯ ВТОРОГО (НИЖНЕГО) ХЕАДЕРА
+   ========================================================================== */
+
+.header-sub {
+    position: fixed;
+    top: 94px; /* Зазор под основным хеадером на планшетах */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999; /* Чуть ниже основного, чтобы бургер-меню перекрывало его */
+    
+    /* Эффект Liquid Glass */
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+    
+    /* Базовая ширина для мобильных (не на весь экран) */
+    width: calc(100% - 32px); 
+    max-width: 450px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-sub__container {
+    min-height: 44px; /* На ПК и планшетах он аккуратный и тонкий */
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Настройки телефонов по умолчанию (ПК и Планшеты) */
+.header-sub__contacts {
+    display: flex;
+    flex-direction: row; /* В одну строку на больших экранах */
+    gap: 16px;
+}
+
+.header-sub__link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.header-sub__link:hover {
+    opacity: 1;
+}
+
+/* Правая часть (Мессенджеры + кнопка) */
+.header-sub__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-sub__socials {
+    display: flex;
+    gap: 8px;
+}
+
+.header-sub__social {
+    text-decoration: none;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.header-sub__social:hover {
+    transform: scale(1.1);
+}
+
+/* Фирменные цвета соцсетей */
+.header-sub__social--viber { background: #735F9E; }
+.header-sub__social--whatsapp { background: #25D366; }
+.header-sub__social--telegram { background: #0088cc; }
+
+/* Кнопка "Написать нам" */
+
+
+
+/* НАЙДИТЕ ВАШУ КНОПКУ .header-sub__btn В STYLE.CSS И ОБНОВИТЕ СТРОЧКИ TRANSITION: */
+
+/* ПОЛНОСТЬЮ ЗАМЕНИТЕ ЭТИ СЕЛЕКТОРЫ В ВАШЕМ STYLE.CSS: */
+
+.header-sub__btn {
+    text-decoration: none !important;
+    color: #ffffff !important;
+    background-color: #2563eb !important; 
+    font-size: 13px !important; 
+    font-weight: 700 !important;
+    padding: 8px 16px !important; 
+    border-radius: 20px !important;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important; /* Явно задаем пустую тень для старта */
+    
+    /* ИСПРАВЛЕНО: Задаем плавность отдельно для каждого свойства и увеличиваем время до 0.5с */
+    transition-property: transform, background-color, box-shadow !important;
+    transition-duration: 0.5s !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.header-sub__btn:hover {
+    transform: scale(1.05) translateY(-1px) !important;
+    background-color: #1d4ed8 !important; 
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6) !important; 
+    
+    /* Синхронизируем скорость при наведении */
+    transition-property: transform, background-color, box-shadow !important;
+    transition-duration: 0.5s !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+
+.header-sub__btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(168, 85, 247, 0.5);
+}
+
+/* ==========================================================================
+   АДАТИВНОСТЬ: МОБИЛЬНЫЕ ТЕЛЕФОНЫ (до 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .header-sub__container {
+        height: 64px; /* Увеличиваем высоту, чтобы поместились две строчки */
+        padding: 8px 12px;
+    }
+
+    /* Телефоны встают друг под другом */
+    .header-sub__contacts {
+        flex-direction: column; 
+        gap: 4px; /* Зазор между номерами */
+        justify-content: center;
+    }
+
+    .header-sub__link {
+        font-size: 14px; /* Чуть крупнее для удобного тапа пальцем */
+    }
+
+    /* Кнопки мессенджеров и действия строго в один горизонтальный ряд */
+    .header-sub__actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-sub__btn {
+        padding: 6px 10px;
+        font-size: 11px; /* Чуть компактнее кнопка на смартфонах */
+    }
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ: ПЛАНШЕТЫ (от 769px до 1024px)
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1500px) {
+    .header-sub {
+        width: calc(100% - 40px); /* Почти на всю ширину, как и первый хеадер */
+        max-width: none;
+        top: 94px;
+    }
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ: КОМПЬЮТЕРЫ (от 1025px и выше)
+   ========================================================================== */
+@media (min-width: 1500px) {
+    .header-sub {
+        width: 60%; /* Строго 60% ширины, как основной хеадер на ПК */
+        max-width: none;
+        top: 98px; /* Идеальный зазор с учетом отступа основного ПК-хеадера */
+        border-radius: 20px;
+    }
+}
+/* ==========================================================================
+   ПОЛНЫЙ CSS ДЛЯ ШИРОКОГО БЛОКА ОБРАТНОЙ СВЯЗИ (ТЕКСТ СЛЕВА, ФОРМА СПРАВА)
+   ========================================================================== */
+
+/* Включаем плавную прокрутку страницы при клике на кнопку «Написать нам» */
+html {
+    scroll-behavior: smooth; 
+}
+
+.contact-section {
+    padding: 20px 20px 80px 20px; /* Увеличили отступы секции, чтобы блок смотрелся просторнее */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-container {
+    /* Эффект Liquid Glass */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    color: var(--text-color);
+    
+    padding: 48px;
+    width: 100%;
+    max-width: 950px; /* Увеличенная ширина блока */
+    
+    /* Двухколоночная сетка: левая часть под текст, правая (чуть шире) под инпуты */
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 48px; /* Расстояние между колонками */
+    align-items: start;
+}
+
+/* Левая колонка: Текст и заголовок */
+.form-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В СТИЛЯХ ФОРМЫ (В КОНЦЕ STYLE.CSS) */
+.form-container h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    
+    /* Меняем градиент на сплошной солидный цвет */
+    color: #1e1b4b; /* Глубокий темно-черничный цвет, отлично читается на светлом фоне */
+}
+
+.form-container p {
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.75;
+    margin: 0;
+}
+
+/* Правая колонка: Поля ввода */
+.feedback-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px; /* Увеличили расстояние между строками */
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В СТИЛЯХ ФОРМЫ: */
+.form-group input,
+.form-group textarea {
+    background: rgba(0, 0, 0, 0.02); /* Светлая подложка для полей */
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    color: #1e293b; /* Темный цвет вводимого текста */
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    background: #ffffff; /* При фокусе поле становится чисто белым */
+    box-shadow: 0 0 12px rgba(124, 58, 237, 0.15);
+}
+
+
+/* Кнопка отправки */
+.form-submit-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8); /* Синий градиент */
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.form-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ И НЕБОЛЬШИХ ПЛАНШЕТОВ (до 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .form-container {
+        /* Переключаем сетку в одну вертикальную колонку */
+        grid-template-columns: 1fr; 
+        gap: 32px;
+        padding: 32px 24px;
+    }
+    
+    .form-info {
+        position: static; /* Отключаем фиксирование текста */
+        text-align: center; /* Центрируем текст на мобилке для красоты */
+    }
+    
+    .form-container h2 {
+        font-size: 26px;
+    }
+    
+    .form-container p {
+        font-size: 14px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+/* ==========================================================================
+   11. ОСНОВНОЙ КОНТЕНТ: ПРИВЕТСТВЕННЫЙ БЛОК И СЕКЦИЯ СПЕЦИАЛИЗАЦИИ
+   ========================================================================== */
+
+/* ==========================================================================
+   11. ЧИСТЫЕ СТИЛИ ДЛЯ ПРИВЕТСТВИЯ И СПЕЦИАЛИЗАЦИИ (БЕЗ IMPORTANT)
+   ========================================================================== */
+
+.main-content {
+    padding-top: 200px; 
+    width: 100%;
+    background-color: #ffffff;
+}
+
+/* Секция приветствия (Hero) */
+.hero-section {
+    padding: 60px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 950px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #1e1b4b;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Секция специализации */
+.specialization-section {
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.specialization-container {
+    width: 100%;
+    max-width: 950px;
+}
+
+.specialization-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e3a8a; /* Синий цвет проекта */
+    margin-bottom: 12px;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+}
+
+.specialization-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+/* Сетка для карточек */
+.specialization-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 полноценные колонки */
+    gap: 30px;
+    width: 100%;
+}
+
+
+.spec-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В ОСНОВНОМ CSS: */
+.spec-card__img {
+    width: 100%;
+    height: 240px; /* Базовая высота для ПК и ноутбуков */
+    object-fit: cover; /* Намертво блокирует растягивание и сплющивание */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.spec-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+
+.spec-card:hover .spec-card__img {
+    transform: scale(1.05);
+}
+
+.spec-card__content {
+    padding: 24px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.spec-card__content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a; /* Синий цвет проекта */
+    margin: 0;
+}
+
+.spec-card__content p {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .specialization-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: 200px; /* Увеличили отступ на телефонах, так как мобильный второй хеадер стал выше */
+    }
+    
+    .specialization-title {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .specialization-subtitle {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 28px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .specialization-grid {
+        grid-template-columns: 1fr; /* Карточки идут строго друг под друга */
+        gap: 24px;
+    }
+        .spec-card__img {
+        /* Принудительно меняем высоту на мобильном разрешении */
+        height: 260px; 
+        object-fit: cover;
+    }
+}
+
+
+/* НАЙДИТЕ И ЗАМЕНИТЕ БЛОК БЕГУНКА СКРОЛЛБАРА В КОНЦЕ STYLE.CSS: */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--accent-color), #1d4ed8); /* Синий градиент для бегунка */
+    border-radius: 10px;
+    border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8); /* Более яркий синий при наведении */
+}
+
+/* Поддержка для Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #2563eb #f1f5f9; /* Синий ползунок */
+}
