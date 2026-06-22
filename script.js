@@ -144,22 +144,24 @@ if (track && btnPrev && btnNext && dotsContainer) {
 }
 
 // ==========================================================================
-// ВАЛИДАЦИЯ ФОРМЫ ЗАКАЗА ЗВОНКА (ИМЯ, ТЕЛЕФОН, ГАЛОЧКА)
+// ПОЛНАЯ b2b-ВАЛИДАЦИЯ ФОРМЫ ЗАКАЗА ЗВОНКА (ИМЯ, КОМПАНИЯ, ТЕЛЕФОН, ГАЛОЧКА)
 // ==========================================================================
 const callForm = document.getElementById('callRequestForm');
 const userName = document.getElementById('user-name');
+const userCompany = document.getElementById('user-company');
 const userPhone = document.getElementById('user-phone');
 const userAgree = document.getElementById('user-agree');
 
 const nameError = document.getElementById('nameError');
+const companyError = document.getElementById('companyError');
 const phoneError = document.getElementById('phoneError');
 const agreeError = document.getElementById('agreeError');
 
-if (callForm && userName && userPhone && userAgree) {
+if (callForm && userName && userCompany && userPhone && userAgree) {
     callForm.addEventListener('submit', (event) => {
         let isFormValid = true;
 
-        // 1. Проверка поля Имени
+        // 1. Проверка Имени
         if (userName.value.trim() === '') {
             userName.classList.add('input-error');
             nameError.style.display = 'block';
@@ -169,7 +171,17 @@ if (callForm && userName && userPhone && userAgree) {
             nameError.style.display = 'none';
         }
 
-        // 2. Проверка поля Телефона (должно быть не пустым и содержать цифры)
+        // 2. Проверка Названия компании
+        if (userCompany.value.trim() === '') {
+            userCompany.classList.add('input-error');
+            companyError.style.display = 'block';
+            isFormValid = false;
+        } else {
+            userCompany.classList.remove('input-error');
+            companyError.style.display = 'none';
+        }
+
+        // 3. Проверка Номера телефона
         if (userPhone.value.trim() === '' || userPhone.value.trim().length < 7) {
             userPhone.classList.add('input-error');
             phoneError.style.display = 'block';
@@ -179,7 +191,7 @@ if (callForm && userName && userPhone && userAgree) {
             phoneError.style.display = 'none';
         }
 
-        // 3. Проверка галочки пользовательского соглашения
+        // 4. Проверка Галочки соглашения
         if (!userAgree.checked) {
             agreeError.style.display = 'block';
             isFormValid = false;
@@ -187,29 +199,19 @@ if (callForm && userName && userPhone && userAgree) {
             agreeError.style.display = 'none';
         }
 
-        // Если хоть одно условие не выполнено — отменяем отправку на почту
+        // Блокируем отправку, если есть ошибки
         if (!isFormValid) {
             event.preventDefault();
         }
     });
 
-    // Сбрасываем визуальные ошибки сразу, как только пользователь начинает вводить данные
-    userName.addEventListener('input', () => {
-        userName.classList.remove('input-error');
-        nameError.style.display = 'none';
-    });
-
-    userPhone.addEventListener('input', () => {
-        userPhone.classList.remove('input-error');
-        phoneError.style.display = 'none';
-    });
-
-    userAgree.addEventListener('change', () => {
-        if (userAgree.checked) {
-            agreeError.style.display = 'none';
-        }
-    });
+    // Мгновенный сброс ошибок при начале ввода текста
+    userName.addEventListener('input', () => { userName.classList.remove('input-error'); nameError.style.display = 'none'; });
+    userCompany.addEventListener('input', () => { userCompany.classList.remove('input-error'); companyError.style.display = 'none'; });
+    userPhone.addEventListener('input', () => { userPhone.classList.remove('input-error'); phoneError.style.display = 'none'; });
+    userAgree.addEventListener('change', () => { if (userAgree.checked) agreeError.style.display = 'none'; });
 }
+
 // ==========================================================================
 // ЛОГИКА СЛАЙДЕРА СЕРТИФИКАТОВ И ПОЛНОЭКРАННОГО ПРОСМОТРА (LIGHTBOX)
 // ==========================================================================
@@ -418,3 +420,64 @@ if (productButtons.length > 0 && hiddenProductInput) {
     });
 }
 
+// ЛОГИКА ПЛАВНОГО FAQ-АККОРДЕОНА (ОТКРЫТ ТОЛЬКО 1 ВОПРОС ЗА РАЗ)
+const faqItems = document.querySelectorAll('.faq-item');
+
+if (faqItems.length > 0) {
+    faqItems.forEach((item) => {
+        const trigger = item.querySelector('.faq-item__trigger');
+        const panel = item.querySelector('.faq-item__panel');
+
+        trigger.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Принудительно закрываем все остальные открытые вопросы
+            faqItems.forEach((otherItem) => {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-item__panel').style.maxHeight = null;
+            });
+
+            // Если текущий вопрос был закрыт — плавно открываем его
+            if (!isActive) {
+                item.classList.add('active');
+                panel.style.maxHeight = panel.scrollHeight + "px"; // Задаем точную высоту контента
+            }
+        });
+    });
+}
+// Автоматическое закрытие бургер-меню при прокрутке страницы
+window.addEventListener('scroll', () => {
+    // Проверяем, что элементы существуют и у меню есть активный класс
+    if (typeof burgerBtn !== 'undefined' && typeof burgerMenu !== 'undefined') {
+        if (burgerMenu.classList.contains('active')) {
+            burgerBtn.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        }
+    }
+});
+// ЭФФЕКТ FADE-IN ПРИ ПРОКРУТКЕ СТРАНИЦЫ
+document.addEventListener("DOMContentLoaded", () => {
+    // Находим все секции, которые должны плавно появляться
+    const animatedSections = document.querySelectorAll(
+        '.specialization-section, .products-section, .certificates-section, .faq-section, .contact-section'
+    );
+
+    // Добавляем им базовый класс невидимости
+    animatedSections.forEach(section => section.classList.add('fade-in-element'));
+
+    // Настраиваем робота-наблюдателя
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Если блок зашел в зону видимости экрана хотя бы на 10%
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible'); // Запускаем анимацию
+                observer.unobserve(entry.target); // Отключаем слежку, чтобы анимация не повторялась
+            }
+        });
+    }, {
+        threshold: 0.1 // 10% видимости блока достаточно для старта
+    });
+
+    // Запускаем слежку за каждым блоком
+    animatedSections.forEach(section => observer.observe(section));
+});

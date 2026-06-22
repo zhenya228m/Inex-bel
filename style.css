@@ -8,26 +8,39 @@
     font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
 }
 
+/* ПОЛНОСТЬЮ ЗАМЕНИТЕ СЕЛЕКТОР BODY В САМОМ НАЧАЛЕ ВАШЕГО STYLE.CSS НА ЭТОТ БЛОК: */
+
+html {
+    /* Новый строгий стальной b2b-градиент */
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #dbeafe 100%) no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+
 body {
     min-height: 100vh;
-    background: #ffffff !important; /* Принудительно делаем фон сайта чисто белым */
+    display: flex;
+    flex-direction: column;
+    
+    /* ИСПРАВЛЕНО: Делаем фон body прозрачным, чтобы сквозь него просвечивал наш красивый градиент */
+    background: transparent !important; 
+    
+    color: #1e293b;
+    line-height: 1.6;
     padding-top: 120px;
 }
 
 
 /* Переменные для эффекта жидкого стекла на светлом фоне */
+
 :root {
-    /* Слегка затемненное стекло, чтобы оно выделялось на белом фоне */
-    --glass-bg: rgba(88, 88, 88, 0.2); 
-    /* Темная тонкая граница вместо светлой */
-    --glass-border: rgba(0, 0, 0, 0.08); 
-    --glass-blur: 20px;
-    /* Мягкая, более легкая тень для светлой темы */
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08); 
-    /* Меняем основной цвет текста на темно-серый (был белый) */
-    --text-color: #1e293b; 
-    /* Оставляем красивый фиолетовый акцент для кнопок */
-    --accent-color: #2563eb; 
+    --accent-color: #1e3a8a; /* Строгий промышленный темно-синий */
+    --text-color: #0f172a;   /* Глубокий графитовый (почти черный) для текстов */
+    
+    /* Слегка приглушаем яркость заднего градиента, делая его солиднее */
+    --glass-bg: rgba(255, 255, 255, 0.4); 
+    --glass-border: rgba(255, 255, 255, 0.6);
 }
 
 
@@ -479,34 +492,35 @@ html {
     scroll-behavior: smooth; 
 }
 
+
+
 .contact-section {
-    padding: 20px 20px 80px 20px; /* Увеличили отступы секции, чтобы блок смотрелся просторнее */
+    padding: 20px 20px 10px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    background-color: transparent !important; /* Убрали жесткую подложку секции */
 }
 
 .form-container {
-    /* Эффект Liquid Glass */
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    box-shadow: var(--glass-shadow);
-    color: var(--text-color);
-    
-    padding: 48px;
     width: 100%;
-    max-width: 950px; /* Увеличенная ширина блока */
+    max-width: 950px;
     
-    /* Двухколоночная сетка: левая часть под текст, правая (чуть шире) под инпуты */
+    /* ИСПРАВЛЕНО: Перевели контейнер формы в стиль жидкого стекла */
+    background: rgba(255, 255, 255, 0.45) !important; /* Полупрозрачный фон */
+    backdrop-filter: blur(16px) !important; /* Размытие заднего плана */
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important; /* Светлая стеклянная рамка */
+    border-radius: 24px; /* Красивые скругленные углы */
+    
+    padding: 40px;
     display: grid;
-    grid-template-columns: 1fr 1.2fr; 
-    gap: 48px; /* Расстояние между колонками */
-    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    box-shadow: 0 10px 30px rgba(30, 41, 59, 0.03);
 }
+
 
 /* Левая колонка: Текст и заголовок */
 .form-info {
@@ -630,17 +644,13 @@ html {
 }
 
 /* ==========================================================================
-   11. ОСНОВНОЙ КОНТЕНТ: ПРИВЕТСТВЕННЫЙ БЛОК И СЕКЦИЯ СПЕЦИАЛИЗАЦИИ
-   ========================================================================== */
-
-/* ==========================================================================
-   11. ЧИСТЫЕ СТИЛИ ДЛЯ ПРИВЕТСТВИЯ И СПЕЦИАЛИЗАЦИИ (БЕЗ IMPORTANT)
+   11. ЧИСТЫЕ СТИЛИ ДЛЯ ПРИВЕТСТВИЯ И СПЕЦИАЛИЗАЦИИ
    ========================================================================== */
 
 .main-content {
     padding-top: 200px; 
     width: 100%;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 /* Секция приветствия (Hero) */
@@ -694,11 +704,14 @@ html {
     letter-spacing: -0.5px;
 }
 
+/* НАЙДИ ЭТОТ СЕЛЕКТОР В STYLE.CSS И ПРОВЕРЬ СТРОЧКИ: */
 .specialization-subtitle {
     font-size: 16px;
-    color: #64748b;
-    line-height: 1.5;
+    color: #475569; /* Сделали цвет чуть-чуть темнее для идеальной читаемости */
+    line-height: 1.6; /* Добавили тексту "воздуха" между строками */
     margin-bottom: 40px;
+    max-width: 950px; /* Растянули текстовый блок во всю ширину сайта */
+    text-align: justify; /* Красивое выравнивание по ширине (как в книгах) */
 }
 
 /* Сетка для карточек */
@@ -711,11 +724,15 @@ html {
 
 
 .spec-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    /* Перевели в стиль жидкого стекла */
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    
     border-radius: 18px;
     overflow: hidden; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 15px rgba(30, 41, 59, 0.02);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     width: 100%;
@@ -742,7 +759,7 @@ html {
 
 .spec-card__content {
     padding: 24px;
-    background: #ffffff;
+    background: transparent !important; /* Убрали жесткий белый фон */
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -781,8 +798,9 @@ html {
     
     .specialization-subtitle {
         font-size: 14px;
-        text-align: center;
+        text-align: left;
         margin-bottom: 28px;
+        line-height: 1.5;
     }
 
 }
@@ -1240,12 +1258,14 @@ html {
    16. СЕКЦИЯ СЕРТИФИКАТОВ, СЛАЙДЕР И МОДАЛЬНОЕ ОКНО
    ========================================================================== */
 
+
 .certificates-section {
-    padding: 20px 20px;
+    padding: 60px 20px;
     display: flex;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: transparent; /* Сделали прозрачным */
 }
+
 
 .certificates-container {
     width: 100%;
@@ -1281,37 +1301,31 @@ html {
     width: 100%;
 }
 
-/* Карточка сертификата */
-/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТИ ДВЕ СТРУКТУРЫ В ВАШЕМ STYLE.CSS: */
 
-/* Карточка сертификата */
 .cert-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    /* Перевели в стиль жидкого стекла */
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    
     border-radius: 14px;
     padding: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 12px rgba(30, 41, 59, 0.02);
     cursor: zoom-in;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    
-    /* Гарантируем, что на любых флекс/грид сетках карточка держит одинаковую высоту */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Картинка бланка — ИСПРАВЛЕНО под строгие одинаковые размеры без растягивания */
 .cert-card__img {
     width: 100%;
-    height: 320px; /* Фиксированная одинаковая высота для ВСЕХ картинок на ПК, планшетах и мобилках */
-    
-    /* ГЛАВНОЕ СВОЙСТВО: Картинка никогда не растянется, не сожмется и не обрежется. 
-       Она полностью впишется в размеры, сохраняя свои реальные пропорции А4 */
+    height: 320px;
     object-fit: contain; 
-    
     display: block;
-    background-color: #ffffff; /* Белая чистая подложка, если пропорции картинки чуть уже карточки */
+    background-color: transparent !important; /* Убрали жесткий белый фон у подложки картинки */
     border-radius: 6px;
 }
 
@@ -1683,7 +1697,7 @@ html {
     padding: 10px 20px; 
     display: flex;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 .products-container {
@@ -1717,7 +1731,6 @@ html {
     display: none; 
 }
 
-/* КАРТОЧКА: По умолчанию для ПК (Картинка слева, текст справа, 2 в ряд) */
 .products-grid {
     display: grid; /* Включаем жесткую сетку для ПК */
     grid-template-columns: repeat(2, 1fr); /* Ровно 2 колонки (автоматом выйдет 2 ряда по 2 штуки) */
@@ -1726,19 +1739,24 @@ html {
 }
 
 .product-card {
-    width: 100%;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    /* Перевели в стиль жидкого стекла */
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 15px rgba(30, 41, 59, 0.02);
     display: flex;
-    flex-direction: row; /* Картинка слева, текст справа */
+    flex-direction: row;
     align-items: center;
     padding: 20px;
     gap: 24px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
 }
+
 
 .product-card:hover {
     transform: translateY(-4px);
@@ -1933,7 +1951,9 @@ html {
         padding: 24px;
         gap: 16px;
     }
-    
+    .prod-dot:nth-child(4) {
+        display: block !important;
+    }
     .product-card__img {
         width: 280px; /* Крупная сочная картинка на телефоне */
         height: 180px;
@@ -1961,4 +1981,156 @@ html {
     
     .prod-prev-btn { left: 10px; }
     .prod-next-btn { right: 10px; }
+}
+/* ==========================================================================
+   18. СЕКЦИЯ ВОПРОСОВ И ОТВЕТОВ (FAQ-АККОРДЕОН В СТИЛЕ LIQUID GLASS)
+   ========================================================================== */
+
+#faq-section {
+    scroll-margin-top: 134px;
+}
+
+.faq-section {
+    padding: 10px 20px; 
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.faq-container {
+    width: 100%;
+    max-width: 950px; /* ИСПРАВЛЕНО: Теперь блок идеально совпадает по ширине с формой и товарами */
+}
+
+.faq-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 12px;
+}
+
+.faq-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 32px;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Зазор между плашками */
+    width: 100%;
+}
+
+/* ИСПРАВЛЕНО: Плашка вопроса в стиле жидкого стекла */
+.faq-item {
+    background: rgba(255, 255, 255, 0.4); /* Полупрозрачный белый фон */
+    backdrop-filter: blur(12px); /* Эффект матового размытия */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7); /* Тонкая светлая рамка */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(30, 41, 59, 0.02); /* Едва заметная тень */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Шапка вопроса (кнопка) */
+.faq-item__trigger {
+    width: 100%;
+    padding: 22px 28px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    gap: 16px;
+}
+
+/* Легкая подсветка при наведении */
+.faq-item__trigger:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Стрелочка-индикатор */
+.faq-item__icon {
+    font-size: 13px;
+    color: var(--accent-color);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+/* Скрытая панель ответа */
+.faq-item__panel {
+    max-height: 0; 
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: transparent; /* Оставляем прозрачной для сохранения эффекта стекла */
+}
+
+.faq-item__panel p {
+    padding: 0 28px 22px 28px;
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #475569;
+}
+
+/* ИСПРАВЛЕНО: Эффектное активное состояние открытого жидкого стекла */
+.faq-item.active {
+    background: rgba(219, 234, 254, 0.45); /* Нежно-синий полупрозрачный оттенок */
+    border-color: rgba(37, 99, 235, 0.3); /* Синяя деликатная рамка */
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.05);
+    transform: translateY(-2px); /* Легкое всплытие открытого вопроса */
+}
+
+.faq-item.active .faq-item__icon {
+    transform: rotate(90deg); /* Плавный поворот стрелочки строго вниз */
+}
+
+@media (max-width: 600px) {
+    .faq-item__trigger { padding: 18px 20px; font-size: 14.5px; }
+    .faq-item__panel p { padding: 0 20px 18px 20px; font-size: 13.5px; }
+}
+/* Базовое состояние для элементов до появления на экране */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(30px); /* Блок изначально смещен чуть вниз */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Плавность анимации */
+}
+
+/* Класс, который включится через JS, когда пользователь доскроллит до блока */
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0); /* Блок плавно встает на свое место */
+}
+#companyError {
+    color: #ef4444;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+    display: none;
+}
+/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТИ ПАРАМЕТРЫ ФОНА ДЛЯ ВАШЕГО ХЕАДЕРА В STYLE.CSS: */
+
+.header, 
+.header-sub,
+.burger-menu {
+    /* ИСПРАВЛЕНО: Подняли плотность белого цвета с 0.45 до 0.75. 
+       Теперь шапка матовая, плотная и сквозь неё ничего не будет просвечивать при скролле! */
+    background: rgba(255, 255, 255, 0.75) !important;
+    
+    /* Усиливаем размытие заднего плана для эффекта дорогого матового стекла */
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    
+    /* Делаем стеклянную рамку чуть заметнее для строгости */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9) !important;
+    
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
 }
