@@ -1,12 +1,12 @@
-/* ==========================================================================
-   1. БАЗОВЫЕ СБРОСЫ И ДЕМО-ФОН
-   ========================================================================== */
+@import url('https://googleapis.com');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif !important; /* Теперь этот красивый шрифт принудительно включится везде */
 }
+
 
 /* ПОЛНОСТЬЮ ЗАМЕНИТЕ СЕЛЕКТОР BODY В САМОМ НАЧАЛЕ ВАШЕГО STYLE.CSS НА ЭТОТ БЛОК: */
 
@@ -439,12 +439,13 @@ body {
     /* Телефоны встают друг под другом */
     .header-sub__contacts {
         flex-direction: column; 
-        gap: 4px; /* Зазор между номерами */
+        gap: 4px !important;/* Зазор между номерами */
         justify-content: center;
     }
 
     .header-sub__link {
-        font-size: 14px; /* Чуть крупнее для удобного тапа пальцем */
+        white-space: nowrap;
+        font-size: 11px; /* Чуть крупнее для удобного тапа пальцем */
     }
 
     /* Кнопки мессенджеров и действия строго в один горизонтальный ряд */
@@ -456,8 +457,10 @@ body {
     }
 
     .header-sub__btn {
-        padding: 6px 10px;
-        font-size: 11px; /* Чуть компактнее кнопка на смартфонах */
+        font-size: 10px !important; /* Уменьшили размер букв */
+        padding: 5px 10px !important; /* Сжали отступы сверху, снизу и по бокам */
+        border-radius: 6px !important; /* Сделали закругление аккуратным */
+        white-space: nowrap;
     }
 }
 
