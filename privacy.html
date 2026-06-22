@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности — ООО "Инекс-Бел"</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+        }
+
+
+        html {
+            /* Переносим градиент на самый корень, теперь он физически не может оборваться */
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 40%, #dbeafe 100%) no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        body {
+            min-height: 100vh;
+            background: transparent !important; /* Делаем боди прозрачным, чтобы работал корень */
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+
+        /* Декоративные абстрактные размытые сферы на фоне для объема */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            opacity: 0.5;
+        }
+        body::before {
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            top: -50px;
+            right: -50px;
+        }
+        body::after {
+            width: 400px;
+            height: 400px;
+            background: #93c5fd;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        /* Премиальный контейнер в стиле Liquid Glass */
+        .privacy-container {
+            width: 100%;
+            max-width: 850px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 32px;
+            padding: 56px;
+            box-shadow: 0 20px 50px rgba(30, 41, 59, 0.05), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Стильная кнопка возврата */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #1e3a8a;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 100px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+            background: #2563eb;
+            border-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .back-link span {
+            margin-right: 8px;
+            font-size: 16px;
+            transition: transform 0.3s;
+        }
+
+        .back-link:hover span {
+            transform: translateX(-4px);
+        }
+
+        /* Заголовки */
+        h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #1e3a8a;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .update-date {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 48px;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        /* Визуальное разделение текста на карточки (блоки) */
+        .privacy-card {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+            transition: transform 0.3s;
+        }
+
+        .privacy-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Кастомный синий маркер перед подзаголовками */
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 20px;
+            background: #2563eb;
+            border-radius: 4px;
+        }
+
+        p {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-top: 12px;
+        }
+
+        ul li {
+            font-size: 15px;
+            color: #475569;
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Красивые маркеры списков */
+        ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 2px;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            body { padding: 40px 12px; }
+            .privacy-container { padding: 32px 20px; border-radius: 24px; }
+            h1 { font-size: 28px; }
+            .privacy-card { padding: 20px; border-radius: 16px; }
+            h2 { font-size: 18px; }
+            p, ul li { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="privacy-container">
+        <!-- Кнопка возврата на главную страницу -->
+        <a href="index.html" class="back-link"><span>&#10229;</span> На главную</a>
+
+        <h1>Политика конфиденциальности</h1>
+        <p class="update-date">ООО "Инекс-Бел" • 2026</p>
+
+        <div class="privacy-card">
+            <p>Настоящая Политика обработки персональных данных (далее – Политика) действует в отношении всей информации, которую ООО "Инекс-Бел" может получить о пользователе во время использования сайта, а также определяет порядок и условия обработки персональных данных, осуществляемой компанией (далее – Оператор).</p>
+            <p style="margin-top: 10px;">Персональные данные – любая информация, относящаяся к определенному или определяемому физическому лицу (субъекту персональных данных).</p>
+        </div>
+
+        <div class="privacy-card">
+            <h2>2. Цели обработки персональных данных</h2>
+            <p>Обработка персональных данных осуществляется Оператором с добровольного согласия субъекта персональных данных в следующих целях:</p>
+            <ul>
+                <li>Предоставление услуг, производство и поставка товаров компании;</li>
+                <li>Проведение внутренних маркетинговых исследований для улучшения сервиса;</li>
+                <li>Взаимодействие с клиентами по вопросам, связанным с исполнением обязательств и договоров;</li>
+                <li>Обеспечение комплексной безопасности компании и защита информационных ресурсов.</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2>3. Принципы обработки персональных данных</h2>
+            <p>Деятельность Оператора по обработке данных основывается на следующих ключевых принципах:</p>
+            <ul>
+                <li><strong>Законность и справедливость:</strong> Соблюдение прав и свобод человека при обработке его персональных данных, включая право на неприкосновенность частной жизни, личную и коммерческую тайну.</li>
+                <li><strong>Целевое ограничение:</strong> Недопустимость обработки данных, несовместимой с целями их сбора. Обработка ограничивается достижением конкретных, заранее определенных и законных целей.</li>
+                <li><strong>Разделение баз данных:</strong> Недопустимость объединения баз данных, содержащих персональные данные, обработка которых осуществляется в несовместимых между собой целях.</li>
+                <li><strong>Соразмерность:</strong> Полное соответствие содержания и объема обрабатываемых персональных данных заявленным целям обработки. Лишние данные не собираются.</li>
+                <li><strong>Конфиденциальность:</strong> Недопустимость передачи персональных данных третьим лицам, если это не предусмотрено законодательством Республики Беларусь. Исключение неограниченного доступа к конфиденциальным данным.</li>
+                <li><strong>Точность и актуальность:</strong> Обеспечение точности, достаточности и своевременного обновления персональных данных по отношению к целям их обработки.</li>
+                <li><strong>Сроки хранения и уничтожение:</strong> Хранение данных в форме, позволяющей определить субъекта, осуществляется не дольше, чем этого требуют цели обработки. Данные подлежат уничтожению или обезличиванию по достижении целей или при утрате необходимости в них.</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2>4. Состав обрабатываемых персональных данных</h2>
+            <p>В рамках обеспечения обратной связи Оператор обрабатывает следующие персональные данные, добровольно предоставляемые пользователем:</p>
+            <ul>
+                <li>Имя (или наименование организации);</li>
+                <li>Контактный номер телефона;</li>
+                <li>Адрес электронной почты (e-mail);</li>
+                <li>Адрес доставки или строительного объекта (при указании в запросе);</li>
+                <li>История запросов и взаимодействия по предыдущим договорам.</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2>5. Права субъекта персональных данных</h2>
+            <p>Субъект персональных данных в соответствии с законодательством Республики Беларусь имеет право:</p>
+            <ul>
+                <li><strong>На изменения и удаление:</strong> Требовать уточнения своих персональных данных, их блокирования или уничтожения, если они являются неполными, устаревшими, неточными или незаконно полученными.</li>
+                <li><strong>На отзыв согласия:</strong> В любой момент отозвать свое согласие на обработку персональных данных без объяснения причин.</li>
+                <li><strong>На получение информации:</strong> Запрашивать информацию, касающуюся обработки его персональных данных, включая подтверждение факта обработки Оператором.</li>
+                <li><strong>На защиту интересов:</strong> На защиту своих прав и законных интересов в установленном законом порядке, включая судебную защиту.</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2>6. Меры по обеспечению безопасности персональных данных</h2>
+            <p>Оператор принимает все необходимые организационные, правовые и технические меры для надежной защиты персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от иных противоправных действий третьих лиц.</p>
+        </div>
+
+        <div class="privacy-card">
+            <h2>7. Срок действия Политики</h2>
+            <p>Настоящая Политика вступает в силу с момента ее утверждения руководством компании и действует бессрочно — до момента замены ее новой редакцией.</p>
+        </div>
+
+        <div class="privacy-card">
+            <h2>8. Порядок внесения изменений</h2>
+            <p>Оператор оставляет за собой право в одностороннем порядке вносить изменения и дополнения в настоящую Политику. Новая редакция становится актуальной с момента ее публикации на данном сайте.</p>
+        </div>
+
+        <div class="privacy-card">
+            <h2>9. Контакты Оператора</h2>
+            <p>По всем вопросам, связанным с обработкой, изменением или удалением ваших персональных данных, вы можете оперативно связаться с нами по указанным контактам:</p>
+            <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+                <p><strong>Телефон А1:</strong> <a href="tel:+375445577554" style="color: #2563eb; text-decoration: none; font-weight: 600;">+375 (44) 557-75-54</a></p>
+                <p><strong>Телефон А1:</strong> <a href="tel:+375291417655" style="color: #2563eb; text-decoration: none; font-weight: 600;">+375 (29) 141-76-55</a></p>
+                <p><strong>Электронная почта:</strong> <a href="mailto:belkrovbobr@yandex.by" style="color: #2563eb; text-decoration: none; font-weight: 600;">belkrovbobr@yandex.by</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

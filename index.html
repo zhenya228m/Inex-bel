@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inex-Bel</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <!-- Подключаем внешние стили -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header__container">
+            <!-- Логотип с картинкой внутри -->
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Logo" class="logo__img">
+            </a>
+
+            <!-- Навигация -->
+            <nav class="nav">
+                <!-- Основные вкладки (Планшеты и ПК) -->
+                <ul class="nav__list">
+                    <li><a href="#certificates-section" class="nav__link">Сертификаты</a></li> 
+                    <li><a href="#products-section" class="nav__link">Наш продукт</a></li>
+                    <li><a href="#" class="nav__link">Этапы заказа</a></li>
+                </ul>
+            </nav>
+
+            <!-- Кнопка бургер-меню (Всегда доступна) -->
+            <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Выпадающая панель бургер-меню -->
+            <div class="burger-menu" id="burgerMenu">
+                <ul class="burger-menu__list">
+                <!-- Видны ТОЛЬКО на телефонах -->
+                <li class="mobile-only"><a href="#certificates-section" class="burger-menu__link">Сертификаты</a></li>
+                <li class="mobile-only"><a href="#products-section" class="burger-menu__link">Наш продукт</a></li>
+                <li class="mobile-only"><a href="#" class="burger-menu__link">Этапы заказа</a></li>
+        
+                <!-- Эта вкладка теперь видна ВСЕГДА (и на ПК в бургере, и на мобилках) -->
+                <li><a href="#specialization-section" class="burger-menu__link">О компании</a></li>
+        
+                <!-- Видно ВСЕГДА -->
+                <li><a href="#" class="burger-menu__link">Часто задаваемые вопросы</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- ДОБАВЬТЕ ЭТОТ БЛОК СТРОГО ПОД ВАШИМ ОСНОВНЫМ </header> -->
+<div class="header-sub">
+    <div class="header-sub__container">
+        <!-- Блок контактов -->
+        <div class="header-sub__contacts">
+            <a href="tel:+375291417655" class="header-sub__link">+375 (29) 141-76-55</a>
+            <a href="tel:+375445677554" class="header-sub__link">+375 (44) 567-75-54</a>
+            <a href="mailto:belkrovbobr@yandex.by" class="header-sub__link header-sub__email">belkrovbobr@yandex.by</a>
+        </div>
+
+        <!-- Блок мессенджеров и действия -->
+        <div class="header-sub__actions">
+            <div class="header-sub__socials">
+                <a href="viber://chat?number=+375291417655" class="header-sub__social header-sub__social--viber" title="Viber">VB</a>
+                <a href="https://wa.me/375291417655" class="header-sub__social header-sub__social--whatsapp" target="_blank" title="WhatsApp">WA</a>
+                <a href="https://t.me/Oleg_136" class="header-sub__social header-sub__social--telegram" target="_blank" title="Telegram">TG</a>
+            </div>
+            
+            <a href="#contact-form" class="header-sub__btn">Заказать звонок</a>
+
+        </div>
+    </div>
+</div>
+<br>
+
+<section class="specialization-section" id="specialization-section">
+
+    <div class="specialization-container">
+        
+        <h2 class="specialization-title">Инекс-Бел — лучшая компания по производству теплоизолиционных цилиндров</h2>
+        <p class="specialization-subtitle">Компания Инекс-Бел специализируется на производстве высококачественных цилиндров из минеральной ваты, предлагая надежные теплоизоляционные решения для инженерных систем, таких как отопление, вентиляция и кондиционирование. Наши продукты отличаются долговечностью, экологичностью и эффективностью, что делает их идеальным выбором для промышленных и строительных проектов. Мы объединяем передовые технологии и строгие стандарты качества, создавая энергоэффективные решения, соответствующие высоким ожиданиям клиентов.</p>
+        
+        <div class="slider-wrapper">
+            <button class="slider-btn prev-btn" id="slidePrev" aria-label="Назад">&#10094;</button>
+            
+            <div class="specialization-grid" id="sliderTrack">
+                <!-- Карточка 1 -->
+                <div class="spec-card">
+                    <img src="images/pipe.png" alt="Теплоизоляционные цилиндры" class="spec-card__img">
+                    <div class="spec-card__content">
+                        <h3>Теплоизоляционные цилиндры</h3>
+                        <p>Собственное производство труб из минеральной ваты высокого качества.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="spec-card">
+                    <img src="images/installation.png" alt="Профессиональный монтаж" class="spec-card__img">
+                    <div class="spec-card__content">
+                        <h3>Профессиональный монтаж</h3>
+                        <p>Квалифицированная установка систем любой сложности с гарантией от компании.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="spec-card">
+                    <img src="images/discount.png" alt="Доступное ценообразование" class="spec-card__img">
+                    <div class="spec-card__content">
+                        <h3>Низкие цены и скидки от производителя</h3>
+                        <p>Выгодные условия напрямую от производителя без посредников, низкие цены с учетом объема заказа</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="spec-card">
+                    <img src="images/delivery.png" alt="Быстрая доставка" class="spec-card__img">
+                    <div class="spec-card__content">
+                        <h3>Быстрая доставка от пункта A к пункту B</h3>
+                        <p>Оперативная транспортировка готовой продукции на ваш объект точно в срок.</p>
+                    </div>
+                </div>
+
+                <!-- Новая Карточка 5 -->
+                <div class="spec-card">
+                    <img src="images/certification.png" alt="Сертификация продукции" class="spec-card__img">
+                    <div class="spec-card__content">
+                        <h3>Оффициальная сертификация продукции</h3>
+                        <p>Вся продукция сертифицирована и соответствует государственным стандартам качества.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-btn next-btn" id="slideNext" aria-label="Вперед">&#10095;</button>
+        </div>
+
+        <!-- Добавили 5-ю точку в индикаторы -->
+        <div class="slider-dots" id="sliderDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+        </div>
+        
+    </div>
+</section>
+
+<!-- ВСТАВЬТЕ ЭТОТ БЛОК МЕЖДУ СЕКЦИЕЙ О НАС И СЕРТИФИКАТАМИ -->
+<section class="products-section" id="products-section">
+    <div class="products-container">
+        <!-- Текстовая верхушка блока -->
+        <h2 class="products-title">Наша продукция</h2>
+        <p class="products-subtitle">Мы производим высококачественные трубы и элементы теплоизоляции в различных защитных оболочках.</p>
+        
+        <!-- Обертка слайдера для мобилок и сетка для ПК -->
+        <div class="prod-slider-wrapper">
+            <button class="prod-slider-btn prod-prev-btn" id="prodPrev" aria-label="Назад">&#10094;</button>
+            
+            <div class="products-grid" id="prodTrack">
+                <!-- Товар 1 -->
+                <div class="product-card">
+                    <img src="images/prod1.jpg" alt="Цилиндры без покрытия" class="product-card__img">
+                    <div class="product-card__content">
+                        <h2>Цилиндры без покрытия</h2>
+                        <p>Для тепловой, звуковой и противопожарной изоляции инженерных коммуникаций.</p>
+                        <a href="#contact-form" class="product-card__btn" data-product="Трубы в ПЭ оболочке">Узнать цену</a>
+                    </div>
+                </div>
+
+                <!-- Товар 2 -->
+                <div class="product-card">
+                    <img src="images/prod2.jpg" alt="Цилиндры кашированные" class="product-card__img">
+                    <div class="product-card__content">
+                        <h2>Цилиндры кашированные</h2>
+                        <p>Защищают стальные и пластиковые трубы от промерзания, образования конденсата и экстремальных температур.</p>
+                        <a href="#contact-form" class="product-card__btn" data-product="Трубы в ОЦ оболочке">Узнать цену</a>
+                    </div>
+                </div>
+
+                <!-- Товар 3 -->
+                <div class="product-card">
+                    <img src="images/prod3.jpg" alt="Цилиндры в металлической обложке" class="product-card__img">
+                    <div class="product-card__content">
+                        <h2>Цилиндры в металлической обложке</h2>
+                        <p>Это готовые элементы утеплителя для труб, покрытые защитным слоем из оцинкованной стали или алюминия.</p>
+                        <a href="#contact-form" class="product-card__btn" data-product="Фасонные изделия">Узнать цену</a>
+                    </div>
+                </div>
+
+                <!-- Товар 4 -->
+                <div class="product-card">
+                    <img src="images/prod4.jpg" alt="Цилиндры ламельные" class="product-card__img">
+                    <div class="product-card__content">
+                        <h2>Цилиндры ламельные</h2>
+                        <p>Для изоляции труб, инженерных коммуникаций, промышленного оборудования и воздуховодов.</p>
+                        <a href="#contact-form" class="product-card__btn" data-product="Комплекты заделки стыков">Узнать цену</a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="prod-slider-btn prod-next-btn" id="prodNext" aria-label="Вперед">&#10095;</button>
+        </div>
+
+        <!-- Индикаторы-точки под слайдером (работают на телефонах) -->
+        <div class="prod-slider-dots" id="prodDots">
+            <span class="prod-dot prod-active" data-index="0"></span>
+            <span class="prod-dot" data-index="1"></span>
+            <span class="prod-dot" data-index="2"></span>
+            <span class="prod-dot" data-index="3"></span>
+        </div>
+        
+    </div>
+</section>
+
+<section class="certificates-section" id="certificates-section">
+    <div class="certificates-container">
+        <h2 class="certificates-title">Сертификация продукции</h2>
+        <p class="certificates-subtitle">Наша продукция проходит строгий контроль качества и полностью соответствует государственным стандартам Республики Беларусь.</p>
+        
+        <div class="cert-slider-wrapper">
+            <!-- Стрелочки управления (на ПК будут скрыты автоматически) -->
+            <button class="cert-slider-btn cert-prev-btn" id="certPrev" aria-label="Назад">&#10094;</button>
+            
+            <div class="certificates-grid" id="certTrack">
+                <!-- Сертификат 1 -->
+                <div class="cert-card">
+                    <img src="images/cert1.jpg" alt="Сертификат соответствия 1" class="cert-card__img">
+                </div>
+                <!-- Сертификат 2 -->
+                <div class="cert-card">
+                    <img src="images/cert2.jpg" alt="Сертификат соответствия 2" class="cert-card__img">
+                </div>
+                <!-- Сертификат 3 -->
+                <div class="cert-card">
+                    <img src="images/cert3.jpg" alt="Сертификат соответствия 3" class="cert-card__img">
+                </div>
+                <!-- Сертификат 4 -->
+                <div class="cert-card">
+                    <img src="images/cert4.jpg" alt="Сертификат соответствия 4" class="cert-card__img">
+                </div>
+            </div>
+
+            <button class="cert-slider-btn cert-next-btn" id="certNext" aria-label="Вперед">&#10095;</button>
+        </div>
+
+        <!-- Индикаторы-точки (на ПК скрыты) -->
+        <div class="cert-slider-dots" id="certDots">
+            <span class="cert-dot cert-active" data-index="0"></span>
+            <span class="cert-dot" data-index="1"></span>
+            <span class="cert-dot" data-index="2"></span>
+            <span class="cert-dot" data-index="3"></span>
+        </div>
+    </div>
+</section>
+
+<!-- ВСПЛЫВАЮЩЕЕ ПАНЕЛЬ-ОКНО ДЛЯ ПРОСМОТРА КАРТИНКИ НА ВЕСЬ ЭКРАН -->
+<div id="certModal" class="cert-modal">
+    <span class="cert-modal__close" id="certModalClose">&times;</span>
+    <img class="cert-modal__content" id="certModalImg" alt="Увеличенный сертификат">
+</div>
+
+
+<!-- НАЙДИТЕ ЭТОТ БЛОК В ВАШЕМ INDEX.HTML И ЗАМЕНИТЕ НА ВАРИАНТ СО СКРЫТЫМ ПОЛЕМ: -->
+
+<section id="contact-form" class="contact-section">
+    <div class="form-container">
+        <!-- Левая колонка с информацией -->
+        <div class="form-info">
+            <h2>Остались вопросы и нужна консультация?</h2>
+            <p>Оставьте свои контакты, и наш специалист свяжется с вами в течение 15 минут для уточнения всех деталей.</p>
+        </div>
+        
+        <!-- Правая колонка с новой формой (Formspree) -->
+        <form action="https://formspree.io/f/xdarnjlb" method="POST" class="feedback-form" id="callRequestForm">
+            
+            <!-- ДОБАВИТЬ ЭТУ СТРОКУ СЮДА (Она будет собирать название товара незаметно для клиента) -->
+            <input type="hidden" id="selected-product" name="product" value="Общая заявка (товар не выбран)">
+
+            <!-- Поле Имени (Placeholder "Иван" остался на месте, путаницы больше не будет) -->
+            <div class="form-group">
+                <label for="user-name">Ваше имя</label>
+                <input type="text" id="user-name" name="name" placeholder="Иван" required>
+                <span class="error-msg" id="nameError">Пожалуйста, введите ваше имя</span>
+            </div>
+
+            <!-- Поле Телефона -->
+            <div class="form-group">
+                <label for="user-phone">Номер телефона</label>
+                <input type="tel" id="user-phone" name="phone" placeholder="+375 (29) 000-00-00" required>
+                <span class="error-msg" id="phoneError">Пожалуйста, введите номер телефона</span>
+            </div>
+
+            <!-- Блок Пользовательского соглашения -->
+            <div class="form-agreement">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="user-agree" name="agreement" required>
+                    <span class="custom-checkbox"></span>
+                    <span class="agreement-text">Я согласен на обработку персональных данных</span>
+                </label>
+                <a href="privacy.html" class="info-btn" title="Читать пользовательское соглашение">!</a>
+            </div>
+            <span class="error-msg agreement-error" id="agreeError">Необходимо принять пользовательское соглашение</span>
+
+            <!-- Кнопка отправки -->
+            <button type="submit" class="form-submit-btn">Заказать звонок</button>
+        </form>
+    </div>
+</section>
+
+<!-- ДОБАВЬТЕ ЭТОТ БЛОК ФУТЕРА В САМЫЙ КОНЕЦ ВАШЕГО INDEX.HTML -->
+<footer class="footer">
+    <div class="footer__container">
+        
+        <!-- Блок 1: Логотип и Юридическая информация (Слева) -->
+        <div class="footer__column footer__column--info">
+            <a href="#" class="footer__logo">
+                <img src="images/logo.png" alt="Инекс-Бел" class="footer__logo-img">
+            </a>
+            <div class="footer__company-details">
+                <p class="footer__text">ООО "Инекс-Бел"</p>
+                <p class="footer__text">УНП: 791217396</p>
+                <p class="footer__text">р/с BY 90 ALFA 3012 2625 5500 1027 0000</p>
+                <p class="footer__text">Банк: Закрытое акционерное общество "Альфа-Банк"</p>
+                <p class="footer__text">220013, Республика Беларусь, г. Минск, ул. Сурганова, 43-47</p>
+            </div>
+        </div>
+
+        <!-- Блок 2: Ссылки покупателям (По центру) -->
+        <div class="footer__column">
+            <h4 class="footer__title">Покупателям</h4>
+            <ul class="footer__list">
+                <li><a href="#products-section" class="footer__link">Наш продукт</a></li>
+                <li><a href="#specialization-section" class="footer__link">О компании</a></li>
+                <li><a href="#certificates-section" class="footer__link">Сертификаты</a></li>
+                <li><a href="#faq-section" class="footer__link">Часто задаваемые вопросы</a></li>
+                <li><a href="#" class="footer__link">Этапы заказа</a></li>
+            </ul>
+        </div>
+
+        <!-- Блок 3: Контакты, Соцсети и Адрес производства (Справа) -->
+        <div class="footer__column">
+            <h4 class="footer__title">Контакты</h4>
+            <div class="footer__contacts">
+                <a href="tel:+375291417655" class="footer__contact-link">+375 (29) 141-76-55</a>
+                <a href="tel:+375445577554" class="footer__contact-link">+375 (44) 557-75-54</a>
+                <a href="mailto:belkrovbobr@yandex.by" class="footer__contact-link footer__contact-link--email">belkrovbobr@yandex.by</a>
+            </div>
+            
+            <!-- Мессенджеры с цветными круглыми кнопками из вашей картинки -->
+            <div class="footer__socials">
+                <a href="viber://chat?number=%2B375291417655" class="footer__social footer__social--viber" title="Viber">VB</a>
+                <a href="https://t.me" class="footer__social footer__social--telegram" target="_blank" title="Telegram">TG</a>
+                <a href="https://wa.me" class="footer__social footer__social--whatsapp" target="_blank" title="WhatsApp">WA</a>
+            </div>
+
+            <p class="footer__text footer__address">
+                213808, Республика Беларусь, Могилевская обл., г. Бобруйск, ул. 50 лет ВЛКСМ, 42
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Нижняя плашка с Политикой конфиденциальности -->
+    <div class="footer__bottom">
+        <div class="footer__bottom-container">
+            <a href="privacy.html" class="footer__privacy-link">Политика конфиденциальности</a>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Подключаем скрипты перед закрывающим тегом body -->
+    <script src="script.js"></script>
+</body>
+</html>
