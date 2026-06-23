@@ -481,3 +481,38 @@ document.addEventListener("DOMContentLoaded", () => {
     // Запускаем слежку за каждым блоком
     animatedSections.forEach(section => observer.observe(section));
 });
+
+// ==========================================================================
+// ИНТЕРАКТИВНЫЙ 3D-ПРОГИБ ДЛЯ КАРТОЧЕК ТОВАРОВ И ГАРАНТИЙ (СТРОГО ДЛЯ ПК)
+// ==========================================================================
+const b2bAllInteractiveCards = document.querySelectorAll('.product-card, .step-card, .cert-card');
+
+// Запускаем 3D-расчет углов ТОЛЬКО на компьютерах и ноутбуках (где экран больше 768px)
+if (b2bAllInteractiveCards.length > 0 && window.innerWidth > 1024) {
+    b2bAllInteractiveCards.forEach((card) => {
+        
+        card.addEventListener('mousemove', (e) => {
+            const width = card.offsetWidth;
+            const height = card.offsetHeight;
+            
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xc = (width / 2 - x) / (width / 2);
+            const yc = (y - height / 2) / (height / 2);
+            
+            const rotateX = (yc * -8).toFixed(2);
+            const rotateY = (xc * 8).toFixed(2);
+            
+            card.style.transition = 'transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease';
+            card.style.transform = `perspective(1000px) translateY(-5px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease';
+            card.style.transform = 'perspective(1000px) translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+    });
+}

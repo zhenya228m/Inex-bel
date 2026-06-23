@@ -54,17 +54,19 @@ body {
     transform: translateX(-50%);
     z-index: 1000;
     
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    box-shadow: var(--glass-shadow);
+    background: rgba(255, 255, 255, 0.55) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
     
     /* Размеры для телефонов: центрировано, не во весь экран */
     width: calc(100% - 32px); 
     max-width: 450px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    border-radius: 20px;
 }
 
 .header__container {
@@ -190,12 +192,13 @@ body {
     left: auto;
     transform: translateY(-10px) scale(0.95);
     
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
+    background: rgba(255, 255, 255, 0.8) !important; /* Плотная подложка */
+    backdrop-filter: blur(24px) !important; /* Сильное размытие заднего плана */
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: -10px 0 30px rgba(15, 23, 42, 0.05);
     border: 2px solid #cbd5e1;
     border-radius: 20px;
-    box-shadow: var(--glass-shadow);
     
     width: 280px; 
     padding: 20px;
@@ -309,17 +312,17 @@ body {
     z-index: 999; /* Чуть ниже основного, чтобы бургер-меню перекрывало его */
     
     /* Эффект Liquid Glass */
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    box-shadow: var(--glass-shadow);
+    background: rgba(255, 255, 255, 0.55) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
     
     /* Базовая ширина для мобильных (не на весь экран) */
     width: calc(100% - 32px); 
     max-width: 450px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px;
 }
 
 .header-sub__container {
@@ -752,7 +755,7 @@ html {
 
 .spec-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06) !important;
 }
 
 
@@ -1334,7 +1337,7 @@ html {
 
 
 .cert-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
 }
 
@@ -1742,12 +1745,10 @@ html {
 }
 
 .product-card {
-    /* Перевели в стиль жидкого стекла */
     background: rgba(255, 255, 255, 0.45) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.7) !important;
-    
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(30, 41, 59, 0.02);
@@ -1756,14 +1757,18 @@ html {
     align-items: center;
     padding: 20px;
     gap: 24px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* ИСПРАВЛЕНО: Применяем точно такую же физику и защиту от мыла */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
     width: 100%;
 }
 
 
 .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06);
+    transform: translateY(-5px); /* Просто приподнимается вверх */
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06) !important;
 }
 
 /* Картинка товара: ЭТАЛОННЫЙ размер для ПК и планшетов */
@@ -1774,6 +1779,7 @@ html {
     border-radius: 12px;
     object-fit: cover;
     display: block;
+    transform: translate3d(0, 0, 15px);
 }
 
 /* Текстовая начинка */
@@ -2136,4 +2142,167 @@ html {
     border-bottom: 1px solid rgba(255, 255, 255, 0.9) !important;
     
     box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+@media (max-width: 768px) {
+    #specialization-section,
+    #contact-form,
+    #faq-section,
+    #products-section {
+    scroll-margin-top: 150px; 
+}
+}
+@media (min-width: 769px) {
+    #certificates-section {
+        scroll-margin-top: 90px;
+    }
+}
+/* ДОБАВЬ ЭТОТ БЛОК В САМЫЙ КОНЕЦ ФАЙЛА STYLE.CSS */
+#burgerMenu, 
+.burger-menu {
+    background: rgba(255, 255, 255, 0.9) !important; /* Делаем меню плотным и матовым */
+    backdrop-filter: blur(24px) !important; /* Мощное размытие заднего плана */
+    -webkit-backdrop-filter: blur(24px) !important;
+}
+/* ==========================================================================
+   19. СЕКЦИЯ ГАРАНТИЙ С ИНТЕРАКТИВНЫМ 3D TILT-ЭФФЕКТОМ ПОБЛОЧНО
+   ========================================================================== */
+
+#steps-section {
+    scroll-margin-top: 134px;
+}
+
+.steps-section {
+    padding: 20px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    /* Включаем трехмерное пространство для всего блока */
+    perspective: 1000px; 
+}
+
+.steps-container {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.steps-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 12px;
+}
+
+.steps-subtitle {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 32px;
+}
+
+/* Сетка: жестко фиксируем 2 ряда по 2 карточки на ПК */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+
+/* НАЙДИТЕ И ПОЛНОСТЬЮ ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В БЛОКЕ ГАРАНТИЙ В ВАШЕМ STYLE.CSS: */
+
+.step-card {
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(30, 41, 59, 0.02);
+    
+    /* ИСПРАВЛЕНО: Убираем scale, оставляем только подъем */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    width: 100%;
+}
+
+/* При наведении увеличиваем тень, как на остальных карточках сайта */
+.step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06) !important;
+}
+
+.step-card__number {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--accent-color);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+    
+    /* Выталкиваем круглую галочку чуть выше над карточкой в 3D пространстве */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+
+.step-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.step-card__content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 0;
+    transform: translateZ(15px);
+}
+
+.step-card__content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #475569;
+    margin: 0;
+    transform: translateZ(10px);
+}
+
+/* АДАПТИВНОСТЬ: НА СМАРТФОНАХ ВСТАЮТ В ОДИН РЯД */
+@media (max-width: 768px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .step-card {
+        padding: 20px;
+    }
+
+}
+/* ДОБАВЬТЕ ЭТОТ БЛОК В САМЫЙ КОНЕЦ ВАШЕГО STYLE.CSS */
+
+@media (max-width: 768px) {
+    /* Настраиваем плавность мобильного отклика для обоих типов карточек */
+    .product-card,
+    .step-card {
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
+    }
+
+    /* ИСПРАВЛЕНО: При нажатии пальцем на телефоне карточки товаров и гарантий синхронно увеличиваются */
+    .product-card:hover,
+    .step-card:hover {
+        transform: translateY(-2px) !important; /* Легкое пружинящее увеличение */
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1) !important; /* Мягкое усиление тени под пальцем */
+    }
 }
