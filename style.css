@@ -1,4 +1,4 @@
-@import url('https://googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
@@ -8,13 +8,14 @@
 }
 
 
-/* ПОЛНОСТЬЮ ЗАМЕНИТЕ СЕЛЕКТОР BODY В САМОМ НАЧАЛЕ ВАШЕГО STYLE.CSS НА ЭТОТ БЛОК: */
-
 html {
     /* Новый строгий стальной b2b-градиент */
     background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #dbeafe 100%) no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #2563eb #f1f5f9; /* Синий ползунок */
 }
 
 
@@ -41,6 +42,8 @@ body {
     /* Слегка приглушаем яркость заднего градиента, делая его солиднее */
     --glass-bg: rgba(255, 255, 255, 0.4); 
     --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-blur: 16px;
+    --glass-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
 }
 
 
@@ -390,13 +393,6 @@ body {
 .header-sub__social--telegram { background: #0088cc; }
 
 /* Кнопка "Написать нам" */
-
-
-
-/* НАЙДИТЕ ВАШУ КНОПКУ .header-sub__btn В STYLE.CSS И ОБНОВИТЕ СТРОЧКИ TRANSITION: */
-
-/* ПОЛНОСТЬЮ ЗАМЕНИТЕ ЭТИ СЕЛЕКТОРЫ В ВАШЕМ STYLE.CSS: */
-
 .header-sub__btn {
     text-decoration: none !important;
     color: #ffffff !important;
@@ -422,12 +418,6 @@ body {
     transition-property: transform, background-color, box-shadow !important;
     transition-duration: 0.5s !important;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-
-.header-sub__btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(168, 85, 247, 0.5);
 }
 
 /* ==========================================================================
@@ -493,14 +483,7 @@ body {
    ПОЛНЫЙ CSS ДЛЯ ШИРОКОГО БЛОКА ОБРАТНОЙ СВЯЗИ (ТЕКСТ СЛЕВА, ФОРМА СПРАВА)
    ========================================================================== */
 
-/* Включаем плавную прокрутку страницы при клике на кнопку «Написать нам» */
-html {
-    scroll-behavior: smooth; 
-}
-
-
-
-.contact-section {
+/* Включаем плавную прокрутку страницы при клике на кнопку «Написать нам» */.contact-section {
     padding: 20px 20px 10px 20px;
     display: flex;
     justify-content: center;
@@ -535,7 +518,6 @@ html {
     gap: 16px;
 }
 
-/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В СТИЛЯХ ФОРМЫ (В КОНЦЕ STYLE.CSS) */
 .form-container h2 {
     font-size: 36px;
     font-weight: 700;
@@ -574,7 +556,6 @@ html {
     letter-spacing: 0.5px;
 }
 
-/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В СТИЛЯХ ФОРМЫ: */
 .form-group input,
 .form-group textarea {
     background: rgba(0, 0, 0, 0.02); /* Светлая подложка для полей */
@@ -699,6 +680,8 @@ html {
 .specialization-container {
     width: 100%;
     max-width: 950px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .specialization-title {
@@ -710,7 +693,6 @@ html {
     letter-spacing: -0.5px;
 }
 
-/* НАЙДИ ЭТОТ СЕЛЕКТОР В STYLE.CSS И ПРОВЕРЬ СТРОЧКИ: */
 .specialization-subtitle {
     font-size: 16px;
     color: #475569; /* Сделали цвет чуть-чуть темнее для идеальной читаемости */
@@ -718,78 +700,6 @@ html {
     margin-bottom: 40px;
     max-width: 950px; /* Растянули текстовый блок во всю ширину сайта */
     text-align: justify; /* Красивое выравнивание по ширине (как в книгах) */
-}
-
-/* Сетка для карточек */
-.specialization-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 полноценные колонки */
-    gap: 30px;
-    width: 100%;
-}
-
-
-.spec-card {
-    /* Перевели в стиль жидкого стекла */
-    background: rgba(255, 255, 255, 0.45) !important;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.7) !important;
-    
-    border-radius: 18px;
-    overflow: hidden; 
-    box-shadow: 0 4px 15px rgba(30, 41, 59, 0.02);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    width: 100%;
-}
-
-/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В ОСНОВНОМ CSS: */
-.spec-card__img {
-    width: 100%;
-    height: 240px; /* Базовая высота для ПК и ноутбуков */
-    object-fit: cover; /* Намертво блокирует растягивание и сплющивание */
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-.spec-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06) !important;
-}
-
-
-.spec-card:hover .spec-card__img {
-    transform: scale(1.05);
-}
-
-.spec-card__content {
-    padding: 24px;
-    background: transparent !important; /* Убрали жесткий белый фон */
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.spec-card__content h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1e3a8a; /* Синий цвет проекта */
-    margin: 0;
-}
-
-.spec-card__content p {
-    font-size: 14px;
-    line-height: 1.45;
-    color: #64748b;
-    margin: 0;
-}
-
-/* Адаптивность */
-@media (max-width: 900px) {
-    .specialization-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 @media (max-width: 768px) {
@@ -811,20 +721,6 @@ html {
 
 }
 
-@media (max-width: 600px) {
-    .specialization-grid {
-        grid-template-columns: 1fr; /* Карточки идут строго друг под друга */
-        gap: 24px;
-    }
-        .spec-card__img {
-        /* Принудительно меняем высоту на мобильном разрешении */
-        height: 260px; 
-        object-fit: cover;
-    }
-}
-
-
-/* НАЙДИТЕ И ЗАМЕНИТЕ БЛОК БЕГУНКА СКРОЛЛБАРА В КОНЦЕ STYLE.CSS: */
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, var(--accent-color), #1d4ed8); /* Синий градиент для бегунка */
     border-radius: 10px;
@@ -835,99 +731,9 @@ html {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8); /* Более яркий синий при наведении */
 }
 
-/* Поддержка для Firefox */
-html {
-    scrollbar-width: thin;
-    scrollbar-color: #2563eb #f1f5f9; /* Синий ползунок */
-}
 /* ==========================================================================
-   13. ИСПРАВЛЕНИЕ НОМЕРОВ И НАСТРОЙКА ГАЛЕРЕИ (СЛАЙДЕРА)
+   13. ИСПРАВЛЕНИЕ НОМЕРОВ ТЕЛЕФОНОВ В МОБИЛЬНОМ ХЕАДЕРЕ
    ========================================================================== */
-
-/* Обертка для позиционирования стрелок слайдера */
-.slider-wrapper {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-/* Обновленная сетка: превращаем её в горизонтальную ленту */
-.specialization-grid {
-    display: flex;
-    gap: 24px;
-    width: 100%;
-    overflow-x: auto; /* Включаем горизонтальную прокрутку */
-    scroll-behavior: smooth; /* Плавное движение при клике на стрелки */
-    scrollbar-width: none; /* Скрываем стандартный скроллбар в Firefox */
-    padding: 10px 4px;
-}
-
-/* Скрываем скроллбар в Chrome/Safari/Edge, чтобы лента была чистой */
-.specialization-grid::-webkit-scrollbar {
-    display: none;
-}
-
-/* Ограничиваем ширину карточек на ПК, чтобы они стали маленькими и не пикселили */
-.spec-card {
-    flex: 0 0 300px; /* Каждая карточка строго 300px в ширину, картинка станет компактной */
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-    transition: transform 0.3s ease;
-}
-
-/* Уменьшаем высоту картинки, чтобы убрать эффект гигантизма */
-.spec-card__img {
-    width: 100%;
-    height: 180px; /* Уменьшили высоту, картинка четкая и аккуратная */
-    object-fit: cover;
-}
-
-/* Кнопки-стрелки для управления слайдером на ПК */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #e2e8f0;
-    border-radius: 50%;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    color: var(--accent-color);
-    transition: all 0.3s;
-}
-
-.slider-btn:hover {
-    background: var(--accent-color);
-    color: #fff;
-}
-
-.prev-btn { left: -50px; }
-.next-btn { right: -50px; }
-
-/* АДАПТИВНОСТЬ ДЛЯ СМАРТФОНОВ И ТЕКУЩИХ ФИКСОВ */
-@media (max-width: 1024px) {
-    /* На планшетах и мобильных прячем стрелки, так как там удобнее листать пальцем (свайпать) */
-    .slider-btn {
-        display: none;
-    }
-    
-    /* Карточки на экранах поменьше делаем чуть уже, чтобы было видно, что ленту можно листать */
-    .spec-card {
-        flex: 0 0 260px;
-    }
-}
-
 @media (max-width: 768px) {
     /* ИСПРАВЛЕНИЕ: Уменьшаем размер шрифта телефонов, чтобы они гарантированно влезали в одну строчку */
     .header-sub__link {
@@ -943,13 +749,6 @@ html {
 /* ==========================================================================
    14. МНОГОКОЛОНОЧНЫЙ АДАПТИВНЫЙ СЛАЙДЕР ДЛЯ ВСЕХ УСТРОЙСТВ
    ========================================================================== */
-
-.specialization-container {
-    width: 100%;
-    max-width: 950px;
-    margin: 0 auto;
-    overflow: hidden;
-}
 
 .slider-wrapper {
     position: relative;
@@ -999,6 +798,40 @@ html {
     border-radius: 12px;
     object-fit: cover;
     display: block;
+    transition: transform 0.5s ease;
+}
+
+.spec-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06);
+}
+
+.spec-card:hover .spec-card__img {
+    transform: scale(1.05);
+}
+
+/* Текстовая подложка карточки: заголовок + описание под картинкой */
+.spec-card__content {
+    padding: 20px 24px 24px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+}
+
+.spec-card__content h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1e3a8a; /* Синий цвет проекта */
+    margin: 0;
+}
+
+.spec-card__content p {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #64748b;
+    margin: 0;
 }
 
 /* Стрелочки управления */
@@ -1075,7 +908,7 @@ html {
         width: calc((100% - 24px) / 2);
     }
     
-    /* НАЙДИТЕ И ОБНОВИТЕ ЭТИ СТРОЧКИ: Сдвигаем стрелки чуть глубже внутрь экрана планшета */
+    /* Сдвигаем стрелки чуть глубже внутрь экрана планшета */
     .prev-btn { 
         left: 12px; 
     }
@@ -1095,7 +928,7 @@ html {
         scroll-snap-align: center;
     }
     
-    /* НАЙДИТЕ И ОБНОВИТЕ ЭТИ СТРОЧКИ: На телефонах делаем отступ 6px, чтобы они не резались экраном */
+    /* На телефонах делаем отступ 6px, чтобы они не резались экраном */
     .prev-btn { 
         left: 10px; 
     }
@@ -1492,8 +1325,6 @@ html {
     .cert-modal__content { width: 95%; }
     .cert-modal__close { right: 20px; top: 10px; }
 }
-/* ДОБАВЬТЕ ЭТОТ БЛОК В САМЫЙ КОНЕЦ ВАШЕГО STYLE.CSS */
-
 /* Задаем невидимый отступ при скролле по якорям для всех целевых секций */
 #specialization-section,
 #certificates-section,
@@ -1827,9 +1658,8 @@ html {
     transform: translateY(-1px);
 }
 
-/* СТРЕЛОЧКИ СЛАЙДЕРА (Всегда видны на ПК и Планшетах) */
+/* СТРЕЛОЧКИ СЛАЙДЕРА (стили заданы здесь, но по умолчанию скрыты на ПК — включаются в медиа-запросах ниже) */
 .prod-slider-btn {
-    display: flex !important;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -1847,17 +1677,13 @@ html {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: var(--accent-color);
     transition: all 0.3s ease;
+    display: none !important; /* Полностью скрываем стрелочки на ПК */
 }
 
 .prod-slider-btn:hover {
     background: var(--accent-color);
     color: #ffffff;
     border-color: var(--accent-color);
-}
-
-
-.prod-slider-btn { 
-    display: none !important; /* Полностью скрываем стрелочки на ПК */
 }
 
 .prod-slider-dots { 
@@ -2125,11 +1951,8 @@ html {
     margin-top: 4px;
     display: none;
 }
-/* НАЙДИТЕ И ЗАМЕНИТЕ ЭТИ ПАРАМЕТРЫ ФОНА ДЛЯ ВАШЕГО ХЕАДЕРА В STYLE.CSS: */
-
 .header, 
-.header-sub,
-.burger-menu {
+.header-sub {
     /* ИСПРАВЛЕНО: Подняли плотность белого цвета с 0.45 до 0.75. 
        Теперь шапка матовая, плотная и сквозь неё ничего не будет просвечивать при скролле! */
     background: rgba(255, 255, 255, 0.75) !important;
@@ -2141,6 +1964,11 @@ html {
     /* Делаем стеклянную рамку чуть заметнее для строгости */
     border-bottom: 1px solid rgba(255, 255, 255, 0.9) !important;
     
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.burger-menu {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9) !important;
     box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
 }
 @media (max-width: 768px) {
@@ -2156,7 +1984,6 @@ html {
         scroll-margin-top: 90px;
     }
 }
-/* ДОБАВЬ ЭТОТ БЛОК В САМЫЙ КОНЕЦ ФАЙЛА STYLE.CSS */
 #burgerMenu, 
 .burger-menu {
     background: rgba(255, 255, 255, 0.9) !important; /* Делаем меню плотным и матовым */
@@ -2208,8 +2035,6 @@ html {
     width: 100%;
 }
 
-
-/* НАЙДИТЕ И ПОЛНОСТЬЮ ЗАМЕНИТЕ ЭТОТ СЕЛЕКТОР В БЛОКЕ ГАРАНТИЙ В ВАШЕМ STYLE.CSS: */
 
 .step-card {
     background: rgba(255, 255, 255, 0.45) !important;
@@ -2289,10 +2114,6 @@ html {
         padding: 20px;
     }
 
-}
-/* ДОБАВЬТЕ ЭТОТ БЛОК В САМЫЙ КОНЕЦ ВАШЕГО STYLE.CSS */
-
-@media (max-width: 768px) {
     /* Настраиваем плавность мобильного отклика для обоих типов карточек */
     .product-card,
     .step-card {

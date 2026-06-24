@@ -322,8 +322,6 @@ if (certModal && certModalImg && certModalClose && allCertImages.length > 0) {
         }
     });
 }
-// ДОБАВЬТЕ ЭТОТ БЛОК В САМЫЙ КОНЕЦ ВАШЕГО SCRIPT.JS
-
 // Находим все ссылки внутри нашего выпадающего бургер-меню
 const burgerLinks = document.querySelectorAll('.burger-menu__link');
 
@@ -359,22 +357,20 @@ if (prodTrack && prodPrev && prodNext && prodDotsContainer) {
         };
     }
 
-// НАЙДИТЕ И ЗАМЕНИТЕ ТОЛЬКО ЭТУ ФУНКЦИЮ В СТИЛЯХ СЛАЙДЕРА ТОВАРОВ В SCRIPT.JS:
-function updateProdDots() {
-    const { step, maxIndex } = getProdParams();
-    let currentIndex = Math.round(prodTrack.scrollLeft / step);
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
+    function updateProdDots() {
+        const { step, maxIndex } = getProdParams();
+        let currentIndex = Math.round(prodTrack.scrollLeft / step);
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-    prodDots.forEach((dot, idx) => {
-        // Просто переключаем класс активности, не трогая отображение
-        if (idx === currentIndex) {
-            dot.classList.add('prod-active');
-        } else {
-            dot.classList.remove('prod-active');
-        }
-    });
-}
-
+        prodDots.forEach((dot, idx) => {
+            // Просто переключаем класс активности, не трогая отображение
+            if (idx === currentIndex) {
+                dot.classList.add('prod-active');
+            } else {
+                dot.classList.remove('prod-active');
+            }
+        });
+    }
 
     prodTrack.addEventListener('scroll', updateProdDots);
     window.addEventListener('resize', updateProdDots);

@@ -78,8 +78,7 @@
             </div>
         </div>
     </header>
-    <!-- ДОБАВЬТЕ ЭТОТ БЛОК СТРОГО ПОД ВАШИМ ОСНОВНЫМ </header> -->
-<div class="header-sub">
+    <div class="header-sub">
     <div class="header-sub__container">
         <!-- Блок контактов -->
         <div class="header-sub__contacts">
@@ -92,8 +91,8 @@
         <div class="header-sub__actions">
             <div class="header-sub__socials">
                 <a href="viber://chat?number=+375291417655" class="header-sub__social header-sub__social--viber" title="Viber">VB</a>
-                <a href="https://wa.me/375291417655" class="header-sub__social header-sub__social--whatsapp" target="_blank" title="WhatsApp">WA</a>
-                <a href="https://t.me/Oleg_136" class="header-sub__social header-sub__social--telegram" target="_blank" title="Telegram">TG</a>
+                <a href="https://wa.me/375291417655" class="header-sub__social header-sub__social--whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp">WA</a>
+                <a href="https://t.me/Oleg_136" class="header-sub__social header-sub__social--telegram" target="_blank" rel="noopener noreferrer" title="Telegram">TG</a>
             </div>
             
             <a href="#contact-form" class="header-sub__btn">Заказать звонок</a>
@@ -175,7 +174,6 @@
     </div>
 </section>
 
-<!-- ВСТАВЬТЕ ЭТОТ БЛОК МЕЖДУ СЕКЦИЕЙ О НАС И СЕРТИФИКАТАМИ -->
 <section class="products-section" id="products-section">
     <div class="products-container">
         <!-- Текстовая верхушка блока -->
@@ -242,7 +240,6 @@
     </div>
 </section>
 
-<!-- ВСТАВЬТЕ ЭТОТ БЛОК ВМЕСТО СТАРЫХ ЭТАПОВ ЗАКАЗА -->
 <section class="steps-section" id="steps-section">
     <div class="steps-container">
         <h2 class="steps-title">Стандарты и гарантии поставок</h2>
@@ -335,7 +332,6 @@
     <img class="cert-modal__content" id="certModalImg" alt="Увеличенный сертификат">
 </div>
 
-<!-- ВСТАВЬТЕ ЭТОТ БЛОК ПЕРЕД СЕРТИФИКАТАМИ ИЛИ ФОРМОЙ ЗАЯВКИ -->
 <section class="faq-section" id="faq-section">
     <div class="faq-container">
         <h2 class="faq-title">Вопросы и ответы</h2>
@@ -401,8 +397,6 @@
 
 
 
-<!-- НАЙДИТЕ ЭТОТ БЛОК В ВАШЕМ INDEX.HTML И ЗАМЕНИТЕ НА ВАРИАНТ СО СКРЫТЫМ ПОЛЕМ: -->
-
 <section id="contact-form" class="contact-section">
     <div class="form-container">
         <!-- Левая колонка с информацией -->
@@ -414,10 +408,10 @@
         <!-- Правая колонка с новой формой (Formspree) -->
         <form action="https://formspree.io/f/xdarnjlb" method="POST" class="feedback-form" id="callRequestForm">
             
-            <!-- ДОБАВИТЬ ЭТУ СТРОКУ СЮДА (Она будет собирать название товара незаметно для клиента) -->
+            <!-- Скрытое поле собирает название товара незаметно для клиента -->
             <input type="hidden" id="selected-product" name="product" value="Общая заявка (товар не выбран)">
 
-            <!-- Поле Имени (Placeholder "Иван" остался на месте, путаницы больше не будет) -->
+            <!-- Поле Имени -->
             <div class="form-group">
                 <label for="user-name">Ваше имя</label>
                 <input type="text" id="user-name" name="name" placeholder="Иван" required>
@@ -455,7 +449,6 @@
     </div>
 </section>
 
-<!-- ДОБАВЬТЕ ЭТОТ БЛОК ФУТЕРА В САМЫЙ КОНЕЦ ВАШЕГО INDEX.HTML -->
 <footer class="footer">
     <div class="footer__container">
         
@@ -497,8 +490,8 @@
             <!-- Мессенджеры с цветными круглыми кнопками из вашей картинки -->
             <div class="footer__socials">
                 <a href="viber://chat?number=%2B375291417655" class="footer__social footer__social--viber" title="Viber">VB</a>
-                <a href="https://t.me" class="footer__social footer__social--telegram" target="_blank" title="Telegram">TG</a>
-                <a href="https://wa.me" class="footer__social footer__social--whatsapp" target="_blank" title="WhatsApp">WA</a>
+                <a href="https://t.me" class="footer__social footer__social--telegram" target="_blank" rel="noopener noreferrer" title="Telegram">TG</a>
+                <a href="https://wa.me" class="footer__social footer__social--whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp">WA</a>
             </div>
 
             <p class="footer__text footer__address">
