@@ -39,30 +39,39 @@ if (track && btnPrev && btnNext && dotsContainer) {
 
     // Функция, определяющая параметры шага скролла
     function getSliderParams() {
-        const cardWidth = cards[0].offsetWidth;
-        const gap = 24; // Наш отступ из CSS
         const visibleWidth = track.offsetWidth;
+        // Реальное расстояние между соседними карточками (точнее, чем формула cardWidth + gap,
+        // и не зависит от округлений scroll-snap на мобильных устройствах)
+        const step = cards.length > 1
+            ? cards[1].offsetLeft - cards[0].offsetLeft
+            : cards[0].offsetWidth;
+        const cardWidth = cards[0].offsetWidth;
+        const gap = step - cardWidth;
         // Вычисляем, сколько карточек сейчас видно на экране (3 на ПК, 2 на планшете, 1 на мобилке)
-        const visibleCount = Math.round(visibleWidth / (cardWidth + gap));
+        const visibleCount = Math.max(1, Math.round(visibleWidth / step));
         return {
-            step: cardWidth + gap,
+            step,
             maxIndex: cards.length - visibleCount
         };
     }
 
+    let currentIndex = 0; // Храним текущий индекс в переменной, а не считаем его каждый раз из scrollLeft —
+                           // во время плавной анимации scrollLeft ещё "в полёте" и даёт неверное значение
+
     // Обновление активного индикатора (точки)
     function updateActiveDot() {
         const { step, maxIndex } = getSliderParams();
-        let currentIndex = Math.round(track.scrollLeft / step);
-        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        let idx = Math.round(track.scrollLeft / step);
+        if (idx > maxIndex) idx = maxIndex;
+        currentIndex = idx;
 
-        dots.forEach((dot, idx) => {
+        dots.forEach((dot, i) => {
             // Прячем точки, которые не нужны (например, на ПК доступны только 3 шага из 5)
-            if (idx > maxIndex) {
+            if (i > maxIndex) {
                 dot.style.display = 'none';
             } else {
                 dot.style.display = 'block';
-                if (idx === currentIndex) {
+                if (i === idx) {
                     dot.classList.add('active');
                 } else {
                     dot.classList.remove('active');
@@ -79,13 +88,13 @@ if (track && btnPrev && btnNext && dotsContainer) {
     // Функция плавного перехода
     function navigate(direction) {
         const { step, maxIndex } = getSliderParams();
-        let currentIndex = Math.round(track.scrollLeft / step);
-        
+
         let targetIndex = currentIndex + direction;
         // Цикличность: если ушли за пределы, возвращаемся в начало или конец
         if (targetIndex > maxIndex) targetIndex = 0;
         if (targetIndex < 0) targetIndex = maxIndex;
 
+        currentIndex = targetIndex; // Обновляем сразу, не дожидаясь окончания анимации скролла
         track.scrollTo({
             left: targetIndex * step,
             behavior: 'smooth'
@@ -100,6 +109,7 @@ if (track && btnPrev && btnNext && dotsContainer) {
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             const { step } = getSliderParams();
+            currentIndex = index;
             track.scrollTo({
                 left: index * step,
                 behavior: 'smooth'
@@ -123,8 +133,9 @@ if (track && btnPrev && btnNext && dotsContainer) {
         setTimeout(() => { isThrottled = false; }, 400);
     }, { passive: false });
 
-    // Автопрокрутка раз в 5 секунд
+    // Автопрокрутка раз в 5 секунд (на 1 карточку)
     function startAutoPlay() {
+        stopAutoPlay(); // На случай повторного вызова — не даём накопиться нескольким таймерам
         autoPlayTimer = setInterval(() => navigate(1), 5000);
     }
 
