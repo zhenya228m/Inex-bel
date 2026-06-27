@@ -450,10 +450,9 @@ body {
     }
 
     .header-sub__btn {
-        font-size: 10px !important; /* Уменьшили размер букв */
-        padding: 5px 10px !important; /* Сжали отступы сверху, снизу и по бокам */
-        border-radius: 6px !important; /* Сделали закругление аккуратным */
-        white-space: nowrap;
+        font-size: 12px !important; /* Уменьшили размер букв */
+        padding: 15px 10px !important; /* Сжали отступы сверху, снизу и по бокам */
+        border-radius: 20px !important; /* Сделали закругление аккуратным */
     }
 }
 
@@ -465,6 +464,10 @@ body {
         width: calc(100% - 40px); /* Почти на всю ширину, как и первый хеадер */
         max-width: none;
         top: 94px;
+    }
+    .header-sub__link {
+        white-space: nowrap;
+        font-size: 11px; /* Чуть крупнее для удобного тапа пальцем */
     }
 }
 
