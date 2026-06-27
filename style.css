@@ -432,13 +432,13 @@ body {
     /* Телефоны встают друг под другом */
     .header-sub__contacts {
         flex-direction: column; 
-        gap: 4px !important;/* Зазор между номерами */
+        gap: 0px !important;/* Зазор между номерами */
         justify-content: center;
     }
 
     .header-sub__link {
         white-space: nowrap;
-        font-size: 11px; /* Чуть крупнее для удобного тапа пальцем */
+        font-size: 10px; /* Чуть крупнее для удобного тапа пальцем */
     }
 
     /* Кнопки мессенджеров и действия строго в один горизонтальный ряд */
@@ -451,7 +451,7 @@ body {
 
     .header-sub__btn {
         font-size: 12px !important; /* Уменьшили размер букв */
-        padding: 15px 10px !important; /* Сжали отступы сверху, снизу и по бокам */
+        padding: 12px 8px !important; /* Сжали отступы сверху, снизу и по бокам */
         border-radius: 20px !important; /* Сделали закругление аккуратным */
     }
 }
