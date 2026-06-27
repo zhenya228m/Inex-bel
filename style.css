@@ -451,7 +451,7 @@ body {
 
     .header-sub__btn {
         font-size: 12px !important; /* Уменьшили размер букв */
-        padding: 12px 8px !important; /* Сжали отступы сверху, снизу и по бокам */
+        padding: 10px 8px !important; /* Сжали отступы сверху, снизу и по бокам */
         border-radius: 20px !important; /* Сделали закругление аккуратным */
     }
 }
