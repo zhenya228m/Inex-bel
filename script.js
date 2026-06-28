@@ -169,7 +169,11 @@ const phoneError = document.getElementById('phoneError');
 const agreeError = document.getElementById('agreeError');
 
 if (callForm && userName && userCompany && userPhone && userAgree) {
-    callForm.addEventListener('submit', (event) => {
+    // ВАЖНО: Делаем функцию асинхронной (добавляем async)
+    callForm.addEventListener('submit', async (event) => {
+        // Всегда отменяем стандартное поведение, чтобы контролировать процесс
+        event.preventDefault();
+        
         let isFormValid = true;
 
         // 1. Проверка Имени
@@ -210,13 +214,48 @@ if (callForm && userName && userCompany && userPhone && userAgree) {
             agreeError.style.display = 'none';
         }
 
-        // Блокируем отправку, если есть ошибки
+        // ЕСЛИ ЕСТЬ ОШИБКИ — прерываем выполнение и ничего не отправляем
         if (!isFormValid) {
-            event.preventDefault();
+            return; 
+        }
+
+        // --- БЛОК ОТПРАВКИ НА WEB3FORMS (срабатывает, только если всё заполнено верно) ---
+        const button = callForm.querySelector('.form-submit-btn');
+        const data = new FormData(callForm);
+
+        // Блокируем кнопку на время отправки
+        button.disabled = true;
+        button.textContent = 'Отправка...';
+
+        try {
+            const response = await fetch(callForm.action, {
+                method: callForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (response.status === 200) {
+                alert('Спасибо! Ваша заявка успешно отправлена. Мы свяжемся с вами в течение 15 минут.');
+                callForm.reset(); // Сбрасываем поля формы после успешной отправки
+            } else {
+                alert('Ошибка сервера: ' + (result.message || 'Не удалось отправить форму.'));
+            }
+        } catch (error) {
+            // Если вы всё еще тестируете на 127.0.0.1 и браузер ругается, вы увидите реальную причину в консоли (F12)
+            console.error('Детали ошибки сети:', error);
+            alert('Не удалось связаться с сервером. Попробуйте обновить страницу или отправить заявку позже.');
+        } finally {
+            // Возвращаем кнопку в начальное состояние в любом случае
+            button.disabled = false;
+            button.textContent = 'Заказать звонок';
         }
     });
 
-    // Мгновенный сброс ошибок при начале ввода текста
+    // Мгновенный сброс ошибок при начале ввода текста (ваш старый код)
     userName.addEventListener('input', () => { userName.classList.remove('input-error'); nameError.style.display = 'none'; });
     userCompany.addEventListener('input', () => { userCompany.classList.remove('input-error'); companyError.style.display = 'none'; });
     userPhone.addEventListener('input', () => { userPhone.classList.remove('input-error'); phoneError.style.display = 'none'; });
