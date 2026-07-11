@@ -466,6 +466,16 @@ if (productButtons.length > 0 && hiddenProductInput) {
     });
 }
 
+// Если пользователь перешел на форму со страницы отдельного товара (?product=...),
+// подставляем название товара в скрытое поле формы автоматически
+if (hiddenProductInput) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productFromUrl = urlParams.get('product');
+    if (productFromUrl) {
+        hiddenProductInput.value = productFromUrl;
+    }
+}
+
 // ЛОГИКА ПЛАВНОГО FAQ-АККОРДЕОНА (ОТКРЫТ ТОЛЬКО 1 ВОПРОС ЗА РАЗ)
 const faqItems = document.querySelectorAll('.faq-item');
 

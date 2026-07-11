@@ -1605,15 +1605,44 @@ body {
     box-shadow: 0 12px 24px rgba(37, 99, 235, 0.06) !important;
 }
 
+/* Обертка картинки + подписи с размерами */
+.product-card__media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    width: 220px; /* Идеальная длина для двухколоночного горизонтального вида */
+}
+
 /* Картинка товара: ЭТАЛОННЫЙ размер для ПК и планшетов */
 .product-card__img {
     height: 230px;
-    width: 220px; /* Идеальная длина для двухколоночного горизонтального вида */
+    width: 100%;
     flex-shrink: 0;
     border-radius: 12px;
     object-fit: cover;
     display: block;
     transform: translate3d(0, 0, 15px);
+}
+
+/* Подпись с размерами под картинкой */
+.product-card__sizes {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #1e3a8a;
+    background: rgba(37, 99, 235, 0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+    /* Исправление размытия border-radius внутри 3D-наклона карточки (баг рендеринга Chrome/Safari) */
+    transform: translateZ(15px);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
 }
 
 /* Текстовая начинка */
@@ -1654,11 +1683,18 @@ body {
     align-self: flex-start;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
     transition: background-color 0.3s, transform 0.2s;
+    /* Исправление размытия border-radius+box-shadow внутри 3D-наклона карточки (баг рендеринга Chrome/Safari) */
+    transform: translateZ(15px);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
 }
 
 .product-card__btn:hover {
     background-color: #1d4ed8;
-    transform: translateY(-1px);
+    transform: translateZ(15px) translateY(-1px);
 }
 
 /* СТРЕЛОЧКИ СЛАЙДЕРА (стили заданы здесь, но по умолчанию скрыты на ПК — включаются в медиа-запросах ниже) */
@@ -1767,7 +1803,7 @@ body {
         scroll-snap-align: start;
     }
     
-    .product-card__img {
+    .product-card__media {
         width: 180px; /* Слегка уменьшаем длину картинки, чтобы текст влез на планшете */
     }
     .prod-dot:nth-child(4) {
@@ -1792,11 +1828,13 @@ body {
     .prod-dot:nth-child(4) {
         display: block !important;
     }
-    .product-card__img {
+    .product-card__media {
         width: 280px; /* Крупная сочная картинка на телефоне */
+        margin: 0 auto;
+    }
+    .product-card__img {
         height: 180px;
         max-width: 100%;
-        margin: 0 auto;
     }
 
     .product-card__content {
@@ -2130,3 +2168,12 @@ body {
         box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1) !important; /* Мягкое усиление тени под пальцем */
     }
 }
+
+
+/* Подвал на странице политики конфиденциальности */
+.privacy-page-footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    width: calc(100% + 40px);
+}
+
